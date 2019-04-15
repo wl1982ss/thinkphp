@@ -34,7 +34,7 @@
         });
     })
 </script>
-<dl class="leftmenu" style="background: #96E1FF;">
+<div class="leftmenu" style="background: #96E1FF;">
     <dd>
         <div class="title">
             <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
@@ -45,9 +45,9 @@
             <span><img src="../static/images/computer.png" /></span>监控中心
         </div>
         <ul class="menuson">
-            <li class="active"><cite></cite><a href="../monitorCenter/subway_map"  id="subway_map" >上海地铁图</a><i></i></li>
-            <li ><cite></cite><a href="../monitorCenter/statistics"  id="data_show">监控统计</a><i></i></li>
-            <li style="display:none"><cite></cite><a href="station.html"  id="tangqiao_show">监控统计</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
         </ul>
     </dd>
     <dd>
@@ -61,44 +61,41 @@
     </dd>
     <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
         <ul class="menuson">
-            <li><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
+            <li class="active"><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
             <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
         </ul>
     </dd>
-</dl>
+</div>
 
-<div class="rightContent">
+<div class="rightContent" style="background: #edf6fa;min-width: 980px;">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
-            <li><a href="#">首页</a></li>
+            <li><a href="#">监控中心</a></li>
+            <li><a href="subway_map.html">上海地铁图</a></li>
+            <li><a href="station.html">塘桥站</a></li>
         </ul>
     </div>
 
-    <div class="mainindex">
+    <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
 
+        <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
+        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <option value="1" selected="selected" style="color:black">一号线</option>
+            <option value="1" style="color:black">二号线</option>
 
-        <div class="welinfo">
-            <span><img src="../static/images/sun.png" alt="天气" /></span>
-            <b>Admin早上好，欢迎使用上海轨交视觉监控系统</b>(admin@smartconnect.com)
-            <a href="#">帐号设置</a>
-        </div>
+        </select>
+        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <option value="1" selected="selected" style="color:black">塘桥站</option>
+            <option value="1" style="color:black">南浦大桥</option>
 
-        <div class="welinfo">
-            <span><img src="../static/images/time.png" alt="时间" /></span>
-            <i>您上次登录的时间：2013-10-09 15:22</i>
-        </div>
+        </select>
 
-        <div class="xline"></div>
+    </div>
 
-        <ul class="iconlist">
-
-            <li><img src="../static/images/i10.png" /><p><a href="#">监控中心</a></p></li>
-            <li><img src="../static/images/i07.png" /><p><a href="#">用户管理</a></p></li>
-            <li><img src="../static/images/i01.png" /><p><a href="#">设备管理</a></p></li>
-
-
-        </ul>
+    <div style="text-align:center">
+        该图 各个监控室 显示 本监控室 拥有的摄像头数量
+        <a href="../deviceManage/camera_room"><img src="../static/images/tangqiao_station_camera.png" style="width:90%;"></a>
 
     </div>
 </div>

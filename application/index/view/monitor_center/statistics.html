@@ -1,0 +1,232 @@
+<script type="text/javascript">
+
+    $(function(){
+
+        var loc = parent.location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+
+
+        if(id == 'admin_subway')
+        {
+            document.getElementById("subway_map").click();
+        }
+        else if(id == 'admin_tangqiao')
+        {
+            document.getElementById("tangqiao_show").click();
+        }
+
+        //导航切换
+        $(".menuson li").click(function(){
+            $(".menuson li.active").removeClass("active")
+            $(this).addClass("active");
+        });
+
+        $('.title').click(function(){
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if($ul.is(':visible')){
+                $(this).next('ul').slideUp();
+            }else{
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
+</script>
+<div class="leftmenu" style="background: #96E1FF;">
+    <dd>
+        <div class="title">
+            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
+        </div>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/computer.png" /></span>监控中心
+        </div>
+        <ul class="menuson">
+            <li ><cite></cite><a href="subway_map" id="subway_map" >上海地铁图</a><i></i></li>
+            <li class="active"><cite></cite><a href="statistics" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
+        </ul>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/user_logo.png" /></span>用户管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="../user/user_list" target="rightFrame">用户列表</a><i></i></li>
+            <li><cite></cite><a href="../user/role_list" target="rightFrame">角色管理</a><i></i></li>
+        </ul>
+    </dd>
+    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
+        <ul class="menuson">
+            <li><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
+            <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
+        </ul>
+    </dd>
+</div>
+
+<div class="rightContent" style="background: #edf6fa;min-width: 980px;">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">监控中心</a></li>
+            <li><a href="subway_map.html">上海地铁图</a></li>
+            <li><a href="station.html">塘桥站</a></li>
+            <li><a href="meter_display.html">仪表显示</a></li>
+        </ul>
+    </div>
+
+    <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
+
+        <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
+        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <option value="1" selected="selected" style="color:black">一号线</option>
+            <option value="1" style="color:black">二号线</option>
+
+        </select>
+        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <option value="1" selected="selected" style="color:black">塘桥站</option>
+            <option value="1" style="color:black">南浦大桥</option>
+
+        </select>
+
+    </div>
+
+    <div style="text-align:center">
+
+        <table class="tablelist" style="text-align:center">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>线路</th>
+                <th>车站</th>
+                <th>仪表</th>
+                <th>当前值</th>
+                <th>标准值</th>
+                <th>状态</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr>
+                <td>1</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电流</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr style="color:red">
+                <td>2</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜2（SRG2）电流</td>
+                <td>49</td>
+                <td>20-40</td>
+                <td>异常</td>
+            </tr>
+
+            <tr>
+                <td>3</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>4</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>5</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>6</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>7</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>8</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>9</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            <tr>
+                <td>10</td>
+                <td>一号线</td>
+                <td>塘桥站</td>
+                <td>事故风机软启动柜1（SRG1）电压</td>
+                <td>29</td>
+                <td>20-40</td>
+                <td>正常</td>
+            </tr>
+
+            </tbody>
+        </table>
+
+
+        <div class="pagin">
+            <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
+            <ul class="paginList">
+                <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
+                <li class="paginItem"><a href="javascript:;">1</a></li>
+                <li class="paginItem current"><a href="javascript:;">2</a></li>
+                <li class="paginItem"><a href="javascript:;">3</a></li>
+                <li class="paginItem"><a href="javascript:;">4</a></li>
+                <li class="paginItem"><a href="javascript:;">5</a></li>
+                <li class="paginItem more"><a href="javascript:;">...</a></li>
+                <li class="paginItem"><a href="javascript:;">10</a></li>
+                <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
+            </ul>
+        </div>
+    </div>
+</div>

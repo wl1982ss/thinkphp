@@ -76,16 +76,23 @@ class User extends Model
     }
 
     // 定义关联方法
+    public function profile()
+    {
+        // 用户HAS ONE档案关联
+        return $this->hasOne('Profile');
+    }
+
+    // 定义一对多关联方法
     public function books()
     {
         return $this->hasMany('Book');
     }
 
-    // 定义关联方法
-    public function profile()
+    // 定义多对多关联
+    public function roles()
     {
-        // 用户HAS ONE档案关联
-        return $this->hasOne('Profile');
+        // 用户 BELONGS_TO_MANY 角色
+        return $this->belongsToMany('Role');
     }
 
 }

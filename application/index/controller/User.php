@@ -9,6 +9,7 @@ namespace app\index\controller;
 
 use app\index\model\Profile;
 use app\index\model\Book;
+use app\index\model\Role;
 use app\index\model\User as UserModel;
 use think\Controller;
 
@@ -18,23 +19,48 @@ class User extends Controller
     public function index()
     {
         //$list = UserModel::all();
-        $list = UserModel::scope('email', 'thinkphp@qq.com')->select();
+        $list = UserModel::paginate(3);
 
-        foreach($list as $user){
-            echo $user->nickname . '<br/>';
-            echo $user->email . '<br/>';
-            echo $user->birthday . '<br/>';
-            echo '-----------------------------------------<br/>';
-        }
-        //$this->assign('list', $list);
-        //$this->assign('count', count($list));
-        //return $this->fetch();
+//        foreach($list as $user){
+//            echo $user->nickname . '<br/>';
+//            echo $user->email . '<br/>';
+//            echo $user->birthday . '<br/>';
+//            echo '-----------------------------------------<br/>';
+//        }
+        $this->assign('list', $list);
+        $this->assign('count', count($list));
+        $this->view->replace([
+            '__PUBLIC__'    =>  '/thinkphp/public/static',
+        ]);
+        return $this->fetch();
+    }
+
+    /**
+     * 用户列表
+     *
+     * @return mixed
+     */
+    public function user_list()
+    {
+        return $this->fetch();
+    }
+
+    /**
+     * 角色列表
+     *
+     * @return mixed
+     */
+    public function role_list()
+    {
+        return $this->fetch();
     }
 
     // 新增用户数据
     public function add()
     {
         $user       = new UserModel;
+        //$role       = Role::getByName('editor');
+        //var_dump($role);
         $user->name =   'thinkphp';
         $user->password =   '123456';
         $user->nickname =   '流年';
@@ -46,6 +72,9 @@ class User extends Controller
             $profile->address   =   '中国上海';
             $profile->email     =   'thinkphp@qq.com';
             $user->profile()->save($profile);
+
+            //$user->roles()->save(['name' => 'editor', 'title' => '编辑']);
+
             return '用户新增成功';
         } else {
             return $user->getError();

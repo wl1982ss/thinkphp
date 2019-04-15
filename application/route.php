@@ -26,8 +26,10 @@ return [
     'blog/:id'          => 'blog/get',
     'blog/:name'        => 'blog/read',
 
-    'user/index'    =>  'index/user/index',
+    'user/index'    =>  'user/index',
     'user/create'   =>  'index/user/create',
+    'user/user_list'    =>  'user/user_list',
+    'user/role_list'    =>  'user/role_list',
     'user/add'      =>  'index/user/add',
     'user/add_list' =>  'index/user/addList',
     'user/update/:id'   =>  'index/user/update',
@@ -36,4 +38,21 @@ return [
     'user/addBook'  =>  'index/user/addBook',
     'user/addBooks' =>  'index/user/addBooks',
 
+    'role/add'      =>  'index/role/add',
+    'role/addList'  =>  'index/role/addList',
+
+    'login'         =>  'index/login',
+    'logout'        =>  'index/logout',
+
+    'monitorCenter' =>  'monitorCenter/subway_map',
+    'monitorCenter/subway_map'  =>  'monitorCenter/subway_map',
+    'monitorCenter/station'     =>  'monitorCenter/station',
+    'monitorCenter/meter_display'   =>  'monitorCenter/meter_display',
+    'monitorCenter/statistics' =>  'monitorCenter/statistics',
+
+    'deviceManage/subway_camera'    =>  'deviceManage/subway_camera',
+    'deviceManage/station_camera'   =>  'deviceManage/station_camera',
+    'deviceManage/camera_room'      =>  'deviceManage/camera_room',
+    'deviceManage/camera_control'   =>  'deviceManage/camera_control',
+    'deviceManage/camera_list'      =>  'deviceManage/camera_list',
 ];

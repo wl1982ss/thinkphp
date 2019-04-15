@@ -1,0 +1,161 @@
+<script type="text/javascript">
+
+    $(function(){
+
+        var loc = parent.location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+
+
+        if(id == 'admin_subway')
+        {
+            document.getElementById("subway_map").click();
+        }
+        else if(id == 'admin_tangqiao')
+        {
+            document.getElementById("tangqiao_show").click();
+        }
+
+        //导航切换
+        $(".menuson li").click(function(){
+            $(".menuson li.active").removeClass("active")
+            $(this).addClass("active");
+        });
+
+        $('.title').click(function(){
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if($ul.is(':visible')){
+                $(this).next('ul').slideUp();
+            }else{
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
+</script>
+<dl class="leftmenu" style="background: #96E1FF;">
+    <dd>
+        <div class="title">
+            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
+        </div>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/computer.png" /></span>监控中心
+        </div>
+        <ul class="menuson">
+            <li ><cite></cite><a href="../monitorCenter/subway_map" target="rightFrame" id="subway_map" >上海地铁图</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/statistics" target="rightFrame" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" target="rightFrame" id="tangqiao_show">监控统计</a><i></i></li>
+        </ul>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/user_logo.png" /></span>用户管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="../user/user_list" target="rightFrame">用户列表</a><i></i></li>
+            <li class="active"><cite></cite><a href="../user/role_list" target="rightFrame">角色管理</a><i></i></li>
+        </ul>
+    </dd>
+    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
+        <ul class="menuson">
+            <li><cite></cite><a href="../deviceManage/subway_camera" target="rightFrame">地铁监控分布图</a><i></i></li>
+            <li><cite></cite><a href="../deviceManage/camera_list" target="rightFrame">摄像头列表</a><i></i></li>
+        </ul>
+    </dd>
+</dl>
+
+<div class="rightContent">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">用户管理</a></li>
+            <li><a href="#">角色管理</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+
+        <div class="tools">
+
+            <ul class="toolbar">
+                <li class="click"><span><img src="../static/images/t01.png" /></span>添加新角色</li>
+                <li><span><img src="../static/images/t03.png" /></span>批量删除选中角色</li>
+            </ul>
+
+        </div>
+
+
+        <table class="tablelist" style="text-align:center">
+            <thead>
+            <tr>
+                <th><input name="" type="checkbox" value="" checked="checked"/></th>
+                <th>角色名称</th>
+                <th>权限</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><input name="" type="checkbox" value="" /></td>
+                <td>系统管理员</td>
+                <td>管理整个系统</td>
+                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr>
+
+            <tr>
+                <td><input name="" type="checkbox" value="" /></td>
+                <td>一号线管理员</td>
+                <td>管理一号线监控系统</td>
+                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr>
+
+            <tr>
+                <td><input name="" type="checkbox" value="" /></td>
+                <td>二号线管理员</td>
+                <td>管理二号线监控系统</td>
+                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr>
+
+            <tr>
+                <td><input name="" type="checkbox" value="" /></td>
+                <td>塘桥站管理员</td>
+                <td>管理塘桥站监控系统</td>
+                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+            </tr>
+
+
+            </tbody>
+        </table>
+
+
+
+        <div class="tip">
+            <div class="tiptop"><span>提示信息</span><a></a></div>
+
+            <div class="tipinfo">
+                <span><img src="../static/images/ticon.png" /></span>
+                <div class="tipright">
+                    <p>是否确认对信息的修改 ？</p>
+                    <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                </div>
+            </div>
+
+            <div class="tipbtn">
+                <input name="" type="button"  class="sure" value="确定" />&nbsp;
+                <input name="" type="button"  class="cancel" value="取消" />
+            </div>
+
+        </div>
+
+
+
+
+    </div>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</div>

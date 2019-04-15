@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link href="../public/static/css/style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../public/static/js/jquery.js"></script>
+
+    <script language="javascript">
+        $(function(){
+            $('.success').css({'position':'absolute','left':($(window).width()-490)/2});
+            $(window).resize(function(){
+                $('.success').css({'position':'absolute','left':($(window).width()-490)/2});
+            })
+
+            var wait = document.getElementById('wait'),
+                href = document.getElementById('href').href;
+            var interval = setInterval(function(){
+                var time = --wait.innerHTML;
+                if(time <= 0) {
+                    location.href = href;
+                    clearInterval(interval);
+                };
+            }, 1000);
+        });
+
+    </script>
+</head>
+
+
+<body style="background:#edf6fa;">
+
+    <div class="success">
+    
+        <h1 style="padding-left: 200px;">
+            <?php switch ($code) {?>
+            <?php case 1:?>
+            :)
+            <?php echo(strip_tags($msg));?>
+            <?php break;?>
+            <?php case 0:?>
+            :(
+            <?php echo(strip_tags($msg));?>
+            <?php break;?>
+            <?php } ?>
+        </h1>
+        <p></p>
+        <div class="reindex"><a id="href" href="<?php echo($url);?>" target="_parent">页面自动跳转 等待时间： <b id="wait"><?php echo($wait);?></b></a></div>
+
+    </div>
+
+
+</body>
+
+</html>

@@ -34,7 +34,7 @@
         });
     })
 </script>
-<dl class="leftmenu" style="background: #96E1FF;">
+<div class="leftmenu" style="background: #96E1FF;">
     <dd>
         <div class="title">
             <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
@@ -45,9 +45,9 @@
             <span><img src="../static/images/computer.png" /></span>监控中心
         </div>
         <ul class="menuson">
-            <li class="active"><cite></cite><a href="../monitorCenter/subway_map"  id="subway_map" >上海地铁图</a><i></i></li>
-            <li ><cite></cite><a href="../monitorCenter/statistics"  id="data_show">监控统计</a><i></i></li>
-            <li style="display:none"><cite></cite><a href="station.html"  id="tangqiao_show">监控统计</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
         </ul>
     </dd>
     <dd>
@@ -61,44 +61,34 @@
     </dd>
     <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
         <ul class="menuson">
-            <li><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
+            <li class="active"><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
             <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
         </ul>
     </dd>
-</dl>
+</div>
 
-<div class="rightContent">
+<div class="rightContent" >
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
             <li><a href="#">首页</a></li>
+            <li><a href="#">工具箱</a></li>
         </ul>
     </div>
 
-    <div class="mainindex">
+    <div class="formbody">
 
+        <div class="formtitle"><span>环控室一</span></div>
 
-        <div class="welinfo">
-            <span><img src="../static/images/sun.png" alt="天气" /></span>
-            <b>Admin早上好，欢迎使用上海轨交视觉监控系统</b>(admin@smartconnect.com)
-            <a href="#">帐号设置</a>
+        <div class="toolsli">
+            <ul class="toollist">
+                <li><a href="../deviceManage/camera_control" ><img src="../static/images/camera_pic.png" /></a><h2>摄像头一</h2><img src="../static/images/button_red.png" style="width:80px; height:40px;"></li>
+                <li><a href="../deviceManage/camera_control"><img src="../static/images/camera_pic.png" /></a><h2>摄像头二</h2><img src="../static/images/button_red.png" style="width:80px; height:40px;"></li>
+            </ul>
+            <span class="tooladd"><img src="../static/images/add_1.png" title="添加摄像头" /></span>
         </div>
 
-        <div class="welinfo">
-            <span><img src="../static/images/time.png" alt="时间" /></span>
-            <i>您上次登录的时间：2013-10-09 15:22</i>
-        </div>
 
-        <div class="xline"></div>
-
-        <ul class="iconlist">
-
-            <li><img src="../static/images/i10.png" /><p><a href="#">监控中心</a></p></li>
-            <li><img src="../static/images/i07.png" /><p><a href="#">用户管理</a></p></li>
-            <li><img src="../static/images/i01.png" /><p><a href="#">设备管理</a></p></li>
-
-
-        </ul>
 
     </div>
 </div>
