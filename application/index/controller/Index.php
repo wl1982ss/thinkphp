@@ -3,6 +3,7 @@ namespace app\index\controller;
 
 use think\Controller;
 use think\Db;
+use app\index\model\User as UserModel;
 use think\Session;
 
 class Index extends Controller
@@ -21,26 +22,40 @@ class Index extends Controller
         $name       =   $_POST['name'];
         $password   =   $_POST['password'];
 
-        if($name == 'admin')
-        {
+        //$user = UserModel::get(['username'=>$name]);
+        $user = new UserModel();
 
-        }
-        else if($name == 'admin_subway')
-        {
+        $result = $user->login($name, $password);
 
-        }
-        else if($name == 'tangqiao')
+        if($result)
         {
+            switch($result->role_id){
+                case 1:
+                    var_dump("admin");
+                    break;
+                case 2:
+                    var_dump("admin_subway");
+                    break;
+                case 3:
+                    var_dump("admin_tangqiao");
+                    break;
+            }
+
+            $this->view->engine->layout(false);
+            $this->success('登录成功','user/index');
+            //$this->redirect('user/index');
 
         }
         else
         {
+            // 用户不存在
+            $this->view->engine->layout(false);
 
+            $this->error('用户不存在，请重新输入', '../index');
+            //$this->redirect('../index');
         }
 
-        $this->view->engine->layout(false);
-        //$this->success('登录成功','user/index');
-        $this->redirect('user/index');
+
         //return 'Hello,'. $name. '! Your password is '. $password. '.';
     }
 
@@ -50,7 +65,7 @@ class Index extends Controller
      */
     public function logout()
     {
-        $this->redirect('./index');
+        $this->redirect('../index');
     }
 
     public function save($name='')

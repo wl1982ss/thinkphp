@@ -3,8 +3,8 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>欢迎登录上海轨交视觉监控系统</title>
-    <link href="../static/css/style.css" rel="stylesheet" type="text/css" />
-    <script language="JavaScript" src="../static/js/jquery.js"></script>
+    <link href="../public/static/css/style.css" rel="stylesheet" type="text/css" />
+    <script language="JavaScript" src="../public/static/js/jquery.js"></script>
 
     <script language="javascript">
         $(function(){
@@ -28,7 +28,7 @@
 
 </head>
 
-<body style="background-color:#1c77ac; background-image:url(../static/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+<body style="background-color:#1c77ac; background-image:url(../public/static/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
 
 <div id="mainBody">
     <div id="cloud1" class="cloud"></div>
@@ -40,7 +40,7 @@
     <span class="systemlogo"></span>
 
     <div class="loginbox">
-        <form action="../login" method="post">
+        <form action="../public/login" method="post">
         <ul>
             <li><input name="name" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
             <li><input name="password" type="password" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>

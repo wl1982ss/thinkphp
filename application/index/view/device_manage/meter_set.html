@@ -1,0 +1,183 @@
+<link href="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<style>
+            .row{
+                    margin-bottom: 5px;
+                }
+            #photo {
+                    max-width: 100%;
+                }
+            .img-preview {
+                    width: 100px;
+                    height: 100px;
+                    overflow: hidden;
+                }
+            button {
+                    margin-top:10px;
+                }
+            #result {
+                    width: 150px;
+                    height: 150px;
+                }
+</style>
+<script type="text/javascript">
+
+    $(function(){
+
+        var loc = parent.location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+
+
+        if(id == 'admin_subway')
+        {
+            document.getElementById("subway_map").click();
+        }
+        else if(id == 'admin_tangqiao')
+        {
+            document.getElementById("tangqiao_show").click();
+        }
+
+        //导航切换
+        $(".menuson li").click(function(){
+            $(".menuson li.active").removeClass("active")
+            $(this).addClass("active");
+        });
+
+        $('.title').click(function(){
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if($ul.is(':visible')){
+                $(this).next('ul').slideUp();
+            }else{
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
+</script>
+<div class="leftmenu" style="background: #96E1FF;">
+    <dd>
+        <div class="title">
+            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
+        </div>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/computer.png" /></span>监控中心
+        </div>
+        <ul class="menuson">
+            <li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>
+            <li ><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
+        </ul>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="../static/images/user_logo.png" /></span>用户管理
+        </div>
+        <ul class="menuson">
+            <li><cite></cite><a href="../user/user_list" >用户列表</a><i></i></li>
+            <li><cite></cite><a href="../user/role_list" >角色管理</a><i></i></li>
+        </ul>
+    </dd>
+    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
+        <ul class="menuson">
+            <li class="active"><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
+            <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
+        </ul>
+    </dd>
+</div>
+
+<div class="rightContent" >
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <label for="input" class="btn btn-danger" style="height:50px;" id="">
+            <span>选择图片</span>
+            <input type="file" id="input" class="sr-only">
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-sm-offset-2">
+            <img src="" id="photo">
+        </div>
+        <div class="col-sm-2" style="width:auto;">
+            <div>
+                <p>
+                    预览(100*100)：
+                </p>
+                <div class="img-preview">
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="crop()">裁剪图片</button>
+            <div>
+                <br/>
+                <p>
+                    结果：
+                </p>
+                <img src="" alt="裁剪结果" id="result">
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Scripts -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/cropper/3.1.3/cropper.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    // 修改自官方demo的js
+    var initCropper = function (img, input){
+        var $image = img;
+        var options = {
+            aspectRatio: 1, // 纵横比
+            viewMode: 2,
+            preview: '.img-preview' // 预览图的class名
+        };
+        $image.cropper(options);
+        var $inputImage = input;
+        var uploadedImageURL;
+        if (URL) {
+            // 给input添加监听
+            $inputImage.change(function () {
+                var files = this.files;
+                var file;
+                if (!$image.data('cropper')) {
+                    return;
+                }
+                if (files && files.length) {
+                    file = files[0];
+                    // 判断是否是图像文件
+                    if (/^image\/\w+$/.test(file.type)) {
+                        // 如果URL已存在就先释放
+                        if (uploadedImageURL) {
+                            URL.revokeObjectURL(uploadedImageURL);
+                        }
+                        uploadedImageURL = URL.createObjectURL(file);
+                        // 销毁cropper后更改src属性再重新创建cropper
+                        $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                        $inputImage.val('');
+                    } else {
+                        window.alert('请选择一个图像文件！');
+                    }
+                }
+            });
+        } else {
+            $inputImage.prop('disabled', true).addClass('disabled');
+        }
+    }
+    var crop = function(){
+        var $image = $('#photo');
+        var $target = $('#result');
+        $image.cropper('getCroppedCanvas',{
+            width:300, // 裁剪后的长宽
+            height:300
+        }).toBlob(function(blob){
+            // 裁剪后将图片放到指定标签
+            $target.attr('src', URL.createObjectURL(blob));
+        });
+    }
+    $(function(){
+        initCropper($('#photo'),$('#input'));
+    });
+</script>

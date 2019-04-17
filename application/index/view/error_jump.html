@@ -8,9 +8,9 @@
 
     <script language="javascript">
         $(function(){
-            $('.success').css({'position':'absolute','left':($(window).width()-490)/2});
+            $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
             $(window).resize(function(){
-                $('.success').css({'position':'absolute','left':($(window).width()-490)/2});
+                $('.error').css({'position':'absolute','left':($(window).width()-490)/2});
             })
 
             var wait = document.getElementById('wait'),
@@ -30,7 +30,7 @@
 
 <body style="background:#edf6fa;">
 
-    <div class="success">
+    <div class="error">
     
         <h1 style="padding-left: 200px;">
             <?php switch ($code) {?>

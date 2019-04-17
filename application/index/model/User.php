@@ -7,23 +7,27 @@
  */
 namespace app\index\model;
 use think\Model;
+use think\Request;
 
 class User extends Model
 {
     // 设置完整的数据表（包含前缀）
-    protected $table = 'think_user';
+    protected $table = 'sc_user';
 
-    protected $dateFormat = 'Y/m/d';
-    protected $type = [
-        // 设置 birthday 为时间戳类型（整型）
-        'birthday' => 'timestamp',
-    ];
+    public function login($username, $password)
+    {
 
-    // 开启自动写入时间戳
-    protected $autoWriteTimestamp = true;
+        $user = $this->where(array('username' => $username))->find();
 
-    // 定义自动完成的属性
-    protected $insert = ['status'];
+        if(empty($user) || $user['password'] != $password){
+            return False;
+        }
+        $request = Request::instance();
+        $data['login_time'] = date('Y-m-d H:i:s');
+        $data['login_ip']   =   $request->ip();
+        $this->where(array('id' => $user['id']))->update($data);
+        return $user;
+    }
 
     // birthday 读取器
     protected function getBirthdayAttr($birthday)
@@ -41,12 +45,6 @@ class User extends Model
     protected function setBirthdayAttr($value)
     {
         return strtotime($value);
-    }
-
-    // status 属性修改器
-    protected function setStatusAttr($value, $data)
-    {
-        return '流年' == $data['nickname'] ? 1 : 2;
     }
 
     // status 属性读取器

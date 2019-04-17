@@ -81,7 +81,7 @@
         <div class="tools">
 
             <ul class="toolbar">
-                <li class="click"><span><img src="../static/images/t01.png" /></span>添加新角色</li>
+                <li class="click"><a href="__PUBLIC__/user/add_role"><span><img src="../static/images/t01.png" /></span>添加新角色</a></li>
                 <li><span><img src="../static/images/t03.png" /></span>批量删除选中角色</li>
             </ul>
 
@@ -98,34 +98,14 @@
             </tr>
             </thead>
             <tbody>
+            {volist name="list" id="role" }
             <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>系统管理员</td>
-                <td>管理整个系统</td>
-                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+                <td><input name="" type="checkbox" value="" />{$role.id}</td>
+                <td>{$role.role_name}</td>
+                <td>{$role.description}</td>
+                <td><a href="__PUBLIC__/user/edit_role/{$role.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/user/delete_role/{$role.id}" class="tablelink"> 删除</a></td>
             </tr>
-
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>一号线管理员</td>
-                <td>管理一号线监控系统</td>
-                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
-
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>二号线管理员</td>
-                <td>管理二号线监控系统</td>
-                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
-
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>塘桥站管理员</td>
-                <td>管理塘桥站监控系统</td>
-                <td><a href="#" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
-
+            {/volist}
 
             </tbody>
         </table>

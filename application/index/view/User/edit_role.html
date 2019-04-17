@@ -1,0 +1,96 @@
+<script type="text/javascript">
+
+    $(function(){
+
+        var loc = parent.location.href;
+        var n1 = loc.length;//地址的总长度
+        var n2 = loc.indexOf("=");//取得=号的位置
+        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
+
+
+        if(id == 'admin_subway')
+        {
+            document.getElementById("subway_map").click();
+        }
+        else if(id == 'admin_tangqiao')
+        {
+            document.getElementById("tangqiao_show").click();
+        }
+
+        //导航切换
+        $(".menuson li").click(function(){
+            $(".menuson li.active").removeClass("active")
+            $(this).addClass("active");
+        });
+
+        $('.title').click(function(){
+            var $ul = $(this).next('ul');
+            $('dd').find('ul').slideUp();
+            if($ul.is(':visible')){
+                $(this).next('ul').slideUp();
+            }else{
+                $(this).next('ul').slideDown();
+            }
+        });
+    })
+</script>
+<dl class="leftmenu" style="background: #96E1FF;">
+    <dd>
+        <div class="title">
+            <a href="__PUBLIC__/user/index" target="rightFrame" style="color:white"><span><img src="__PUBLIC__/static/images/home.png" /></span>首页</a>
+        </div>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="__PUBLIC__/static/images/computer.png" /></span>监控中心
+        </div>
+        <ul class="menuson">
+            <li ><cite></cite><a href="__PUBLIC__/monitorCenter/subway_map" target="rightFrame" id="subway_map" >上海地铁图</a><i></i></li>
+            <li ><cite></cite><a href="__PUBLIC__/monitorCenter/statistics" target="rightFrame" id="data_show">监控统计</a><i></i></li>
+            <li style="display:none"><cite></cite><a href="station.html" target="rightFrame" id="tangqiao_show">监控统计</a><i></i></li>
+        </ul>
+    </dd>
+    <dd>
+        <div class="title">
+            <span><img src="__PUBLIC__/static/images/user_logo.png" /></span>用户管理
+        </div>
+        <ul class="menuson">
+            <li class="active"><cite></cite><a href="__PUBLIC__/user/user_list" >用户列表</a><i></i></li>
+            <li><cite></cite><a href="__PUBLIC__/user/role_list" >角色管理</a><i></i></li>
+        </ul>
+    </dd>
+    <dd><div class="title"><span><img src="__PUBLIC__/static/images/camera.png" /></span>设备管理</div>
+        <ul class="menuson">
+            <li><cite></cite><a href="__PUBLIC__/deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
+            <li><cite></cite><a href="__PUBLIC__/deviceManage/camera_list" >摄像头列表</a><i></i></li>
+        </ul>
+    </dd>
+</dl>
+
+<div class="rightContent">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">用户管理</a></li>
+            <li><a href="#">角色管理</a></li>
+            <li><a href="#">增加新角色</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+
+        <div class="formtitle"><span>角色信息</span></div>
+        <form action="__PUBLIC__/user/do_edit_role/{$role.id}" method="post">
+            <ul class="forminfo">
+                <li><label>角色名称</label><input name="role_name" type="text" class="dfinput" value="{$role.role_name}"/><i></i></li>
+                <li><label>职责描述</label><input name="description" type="text" class="dfinput" value="{$role.description}"/><i></i></li>
+
+                <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="保存修改"/></li>
+            </ul>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</div>
