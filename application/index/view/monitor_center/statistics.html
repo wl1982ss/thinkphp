@@ -1,220 +1,183 @@
-<script type="text/javascript">
 
-    $(function(){
+{include file="user/leftMenu" title="title"/}
+<!--<div class="leftmenu" style="background: #96E1FF;">-->
+    <!--<dd>-->
+        <!--<div class="title">-->
+            <!--<a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>-->
+        <!--</div>-->
+    <!--</dd>-->
+    <!--<dd>-->
+        <!--<div class="title">-->
+            <!--<span><img src="../static/images/computer.png" /></span>监控中心-->
+        <!--</div>-->
+        <!--<ul class="menuson">-->
+            <!--<li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>-->
+            <!--<li class="active"><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>-->
+            <!--<li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>-->
+        <!--</ul>-->
+    <!--</dd>-->
+    <!--<dd>-->
+        <!--<div class="title">-->
+            <!--<span><img src="../static/images/user_logo.png" /></span>用户管理-->
+        <!--</div>-->
+        <!--<ul class="menuson">-->
+            <!--<li><cite></cite><a href="../user/user_list" >用户列表</a><i></i></li>-->
+            <!--<li><cite></cite><a href="../user/role_list" >角色管理</a><i></i></li>-->
+        <!--</ul>-->
+    <!--</dd>-->
+    <!--<dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>-->
+        <!--<ul class="menuson">-->
+            <!--<li ><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>-->
+            <!--<li ><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>-->
+        <!--</ul>-->
+    <!--</dd>-->
+<!--</div>-->
 
-        var loc = parent.location.href;
-        var n1 = loc.length;//地址的总长度
-        var n2 = loc.indexOf("=");//取得=号的位置
-        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-
-
-        if(id == 'admin_subway')
-        {
-            document.getElementById("subway_map").click();
-        }
-        else if(id == 'admin_tangqiao')
-        {
-            document.getElementById("tangqiao_show").click();
-        }
-
-        //导航切换
-        $(".menuson li").click(function(){
-            $(".menuson li.active").removeClass("active")
-            $(this).addClass("active");
-        });
-
-        $('.title').click(function(){
-            var $ul = $(this).next('ul');
-            $('dd').find('ul').slideUp();
-            if($ul.is(':visible')){
-                $(this).next('ul').slideUp();
-            }else{
-                $(this).next('ul').slideDown();
-            }
-        });
-    })
-</script>
-<div class="leftmenu" style="background: #96E1FF;">
-    <dd>
-        <div class="title">
-            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
-        </div>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/computer.png" /></span>监控中心
-        </div>
-        <ul class="menuson">
-            <li ><cite></cite><a href="subway_map" id="subway_map" >上海地铁图</a><i></i></li>
-            <li class="active"><cite></cite><a href="statistics" id="data_show">监控统计</a><i></i></li>
-            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/user_logo.png" /></span>用户管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="../user/user_list" target="rightFrame">用户列表</a><i></i></li>
-            <li><cite></cite><a href="../user/role_list" target="rightFrame">角色管理</a><i></i></li>
-        </ul>
-    </dd>
-    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
-        <ul class="menuson">
-            <li><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
-            <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
-        </ul>
-    </dd>
-    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>地铁线路管理</div>
-        <ul class="menuson">
-            <li><cite></cite><a href="../subwayManage/company_list" >运营公司列表</a><i></i></li>
-            <li><cite></cite><a href="../subwayManage/line_list" >地铁线路列表</a><i></i></li>
-        </ul>
-    </dd>
-</div>
-
-<div class="rightContent" style="background: #edf6fa;min-width: 980px;">
+<div class="rightContent" >
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
             <li><a href="#">监控中心</a></li>
-            <li><a href="subway_map.html">上海地铁图</a></li>
-            <li><a href="station.html">塘桥站</a></li>
-            <li><a href="meter_display.html">仪表显示</a></li>
+            <li><a href="#">监控统计</a></li>
         </ul>
     </div>
 
-    <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
+    <div class="rightinfo">
 
-        <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">一号线</option>
-            <option value="1" style="color:black">二号线</option>
+        <div class="tools">
 
-        </select>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">塘桥站</option>
-            <option value="1" style="color:black">南浦大桥</option>
+            <ul class="toolbar">
+                <li class="click"><a href="__PUBLIC__/monitorCenter/add_meter"><span><img src="../static/images/t01.png" /></span>添加新仪表</a></li>
 
-        </select>
+            </ul>
 
-    </div>
 
-    <div style="text-align:center">
+
+            <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">机房选择：</label>
+            <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+                <option value="1" selected="selected" style="color:black">一号线</option>
+                <option value="1" style="color:black">二号线</option>
+
+            </select>
+            <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
+                <option value="1" selected="selected" style="color:black">塘桥站</option>
+                <option value="1" style="color:black">南浦大桥</option>
+
+            </select>
+
+        </div>
+
+
 
         <table class="tablelist" style="text-align:center">
             <thead>
             <tr>
-                <th>序号</th>
-                <th>线路</th>
-                <th>车站</th>
-                <th>仪表</th>
+                <th><input name="" type="checkbox" value="" checked="checked"/></th>
+                <th>仪表名称</th>
+                <th>类型</th>
+                <th>所在机房</th>
+                <th>所属车站</th>
+
                 <th>当前值</th>
                 <th>标准值</th>
                 <th>状态</th>
+                <th>识别图像</th>
+                <th>描述</th>
+                <th>操作</th>
             </tr>
             </thead>
 
             <tbody>
+            {volist name="meter_list" id="item"}
             <tr>
-                <td>1</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电流</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+                <td><input name="" type="checkbox" value="" />{$item.id}</td>
+                <td>{$item.name}</td>
+                <td>{$item.type}</td>
+                <td>{$item.subway_monitor_room_id}</td>
+                <td>{$item.station_id}</td>
+                <td>{$item.value}</td>
+                <td>{$item.min_normal} - {$item.max_normal} </td>
+                <td>{$item.status}</td>
+                <td><img src="../{$item.recg_image}" width="50px" height="50px"></td>
+                <td>{$item.description}</td>
+                <td>
 
-            <tr style="color:red">
-                <td>2</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜2（SRG2）电流</td>
-                <td>49</td>
-                <td>20-40</td>
-                <td>异常</td>
-            </tr>
+                    <a href="__PUBLIC__/monitorCenter/edit_meter/{$item.id}" class="tablelink">修改</a>
 
-            <tr>
-                <td>3</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
+                    <a href="__PUBLIC__/monitorCenter/delete_meter/{$item.id}" class="tablelink"> 删除</a></td>
             </tr>
+            {/volist}
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>4</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>5</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>6</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>7</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>8</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>9</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td>10</td>
-                <td>一号线</td>
-                <td>塘桥站</td>
-                <td>事故风机软启动柜1（SRG1）电压</td>
-                <td>29</td>
-                <td>20-40</td>
-                <td>正常</td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
             </tbody>
         </table>
@@ -234,5 +197,28 @@
                 <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
             </ul>
         </div>
+
+        <div class="tip">
+            <div class="tiptop"><span>提示信息</span><a></a></div>
+
+            <div class="tipinfo">
+                <span><img src="images/ticon.png" /></span>
+                <div class="tipright">
+                    <p>是否确认对信息的修改 ？</p>
+                    <cite>如果是请点击确定按钮 ，否则请点取消。</cite>
+                </div>
+            </div>
+
+            <div class="tipbtn">
+                <input name="" type="button"  class="sure" value="确定" />&nbsp;
+                <input name="" type="button"  class="cancel" value="取消" />
+            </div>
+
+        </div>
+
     </div>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
 </div>

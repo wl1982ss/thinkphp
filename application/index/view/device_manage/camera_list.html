@@ -1,71 +1,4 @@
-<script type="text/javascript">
-
-    $(function(){
-
-        var loc = parent.location.href;
-        var n1 = loc.length;//地址的总长度
-        var n2 = loc.indexOf("=");//取得=号的位置
-        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-
-
-        if(id == 'admin_subway')
-        {
-            document.getElementById("subway_map").click();
-        }
-        else if(id == 'admin_tangqiao')
-        {
-            document.getElementById("tangqiao_show").click();
-        }
-
-        //导航切换
-        $(".menuson li").click(function(){
-            $(".menuson li.active").removeClass("active")
-            $(this).addClass("active");
-        });
-
-        $('.title').click(function(){
-            var $ul = $(this).next('ul');
-            $('dd').find('ul').slideUp();
-            if($ul.is(':visible')){
-                $(this).next('ul').slideUp();
-            }else{
-                $(this).next('ul').slideDown();
-            }
-        });
-    })
-</script>
-<div class="leftmenu" style="background: #96E1FF;">
-    <dd>
-        <div class="title">
-            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
-        </div>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/computer.png" /></span>监控中心
-        </div>
-        <ul class="menuson">
-            <li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>
-            <li ><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>
-            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/user_logo.png" /></span>用户管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="../user/user_list" >用户列表</a><i></i></li>
-            <li><cite></cite><a href="../user/role_list" >角色管理</a><i></i></li>
-        </ul>
-    </dd>
-    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
-        <ul class="menuson">
-            <li ><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
-            <li class="active"><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
-        </ul>
-    </dd>
-</div>
+{include file="user/leftMenu" title="title"/}
 
 <div class="rightContent" >
     <div class="place">
@@ -81,8 +14,8 @@
         <div class="tools">
 
             <ul class="toolbar">
-                <li class="click"><a href="../deviceManage/camera_control" ><span><img src="../static/images/t01.png" /></span>添加新摄像头</a></li>
-                <li><span><img src="../static/images/t03.png" /></span>批量删除选中的摄像头</li>
+                <li class="click"><a href="../deviceManage/add_camera" ><span><img src="../static/images/t01.png" /></span>添加新摄像头</a></li>
+
             </ul>
 
 
@@ -107,95 +40,100 @@
             <thead>
             <tr>
                 <th><input name="" type="checkbox" value="" checked="checked"/></th>
-                <th>摄像头编号</th>
+                <th>摄像头名称</th>
+                <th>编号</th>
                 <th>所在机房</th>
+                <th>所属车站</th>
                 <th>IP</th>
-                <th>监控仪表</th>
+                <th>描述</th>
                 <th>操作</th>
             </tr>
             </thead>
 
             <tbody>
+            {volist name="camera_list" id="item"}
             <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表 </td>
-                <td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
+                <td><input name="" type="checkbox" value="" />{$item.id}</td>
+                <td>{$item.name}</td>
+                <td>{$item.serial_number}</td>
+                <td>{$item.subway_monitor_room_id}</td>
+                <td>{$item.station_id}</td>
+                <td>{$item.ip}</td>
+                <td>{$item.description}</td>
+                <td><a href="__PUBLIC__/deviceManage/edit_camera/{$item.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/deviceManage/delete_camera/{$item.id}" class="tablelink"> 删除</a></td>
             </tr>
+            {/volist}
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
-
-            <tr>
-                <td><input name="" type="checkbox" value="" /></td>
-                <td>1234567890</td>
-                <td>塘桥地铁站环控室一</td>
-                <td>179.22.134.1</td>
-                <td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>
-                <td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>
-            </tr>
+            <!--<tr>-->
+                <!--<td><input name="" type="checkbox" value="" /></td>-->
+                <!--<td>1234567890</td>-->
+                <!--<td>塘桥地铁站环控室一</td>-->
+                <!--<td>179.22.134.1</td>-->
+                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
+                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
+            <!--</tr>-->
 
             </tbody>
         </table>

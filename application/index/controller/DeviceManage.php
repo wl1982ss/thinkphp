@@ -7,6 +7,8 @@
  */
 namespace app\index\controller;
 
+use app\index\model\SubwayCamera as SubwayCameraModel;
+use app\index\model\SubwayCamera;
 use think\Controller;
 
 class DeviceManage extends Controller
@@ -27,6 +29,8 @@ class DeviceManage extends Controller
      */
     public function subway_camera()
     {
+        $this->assign('left_menu','subway_camera');
+
         return $this->fetch();
     }
 
@@ -72,6 +76,89 @@ class DeviceManage extends Controller
      */
     public function camera_list()
     {
+        $camera_list = SubwayCameraModel::all();
+
+        $this->assign('camera_list', $camera_list);
+        $this->assign('left_menu', 'camera_list');
         return $this->fetch();
+    }
+
+    /**
+     * 添加新摄像头
+     * @return mixed
+     */
+    public function add_camera()
+    {
+        $this->assign('left_menu', 'camera_list');
+        return $this->fetch();
+    }
+
+    /**
+     * 保存新摄像头信息
+     */
+    public function do_add_camera()
+    {
+        $data['name'] = $_POST['name'];
+        $data['serial_number']  =   $_POST['serial_number'];
+        $data['station_id']     =   $_POST['station_id'];
+        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
+        $data['ip'] =   $_POST['ip'];
+        $data['description']    =   $_POST['description'];
+
+        SubwayCameraModel::create($data);
+        $this->redirect('deviceManage/camera_list');
+    }
+
+    /**
+     * 修改摄像头信息
+     *
+     * @param $id
+     * @return mixed
+     * @throws \think\exception\DbException
+     */
+    public function edit_camera($id)
+    {
+        $camera_info = SubwayCameraModel::get($id);
+        $this->assign('camera_info', $camera_info);
+        $this->assign('left_menu', 'camera_list');
+        return $this->fetch();
+    }
+
+    /**
+     * 保存修改的信息
+     *
+     * @param $id
+     */
+    public function do_edit_camera($id)
+    {
+        $data['name']   =   $_POST['name'];
+        $data['serial_number']  =   $_POST['serial_number'];
+        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
+        $data['station_id'] =   $_POST['station_id'];
+        $data['ip'] =   $_POST['ip'];
+        $data['description']    =   $_POST['description'];
+
+        SubwayCameraModel::update($data, array('id' => $id));
+        $this->redirect('deviceManage/camera_list');
+    }
+
+    /**
+     * 删除摄像头
+     *
+     * @param $id
+     * @throws \think\exception\DbException
+     */
+    public function delete_camera($id)
+    {
+        $camera_info = SubwayCameraModel::get($id);
+        if($camera_info)
+        {
+            $camera_info->delete();
+            $this->redirect('deviceManage/camera_list');
+        }
+        else
+        {
+            $this->redirect('deviceManage/camera_list');
+        }
     }
 }

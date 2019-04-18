@@ -147,7 +147,7 @@ class SubwayManage extends Controller
     {
         $line_info = SubwayLineModel::get($id);
         $this->assign('line_info', $line_info);
-        $this->fetch();
+        return $this->fetch();
     }
 
     public function do_edit_line($id)
@@ -158,5 +158,20 @@ class SubwayManage extends Controller
 
         SubwayLineModel::update($data, array('id' => $id));
         $this->redirect('subwayManage/line_list');
+    }
+
+    public function delete_line($id)
+    {
+        $subway_line = SubwayLineModel::get($id);
+        if($subway_line)
+        {
+            $subway_line->delete();
+            $this->redirect('subwayManage/line_list');
+        }
+        else
+        {
+            // 不存在该线路
+            $this->redirect('subwayManage/line_list');
+        }
     }
 }

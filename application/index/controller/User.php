@@ -49,6 +49,7 @@ class User extends Controller
 
         $this->assign('list', $list);
         $this->assign('count', count($list));
+        $this->assign('left_menu', 'user_list');
 
         return $this->fetch();
     }
@@ -64,6 +65,8 @@ class User extends Controller
 
         $this->assign('list', $list);
         $this->assign('count', count($list));
+        $this->assign('left_menu', 'role_list');
+
         return $this->fetch();
     }
 
@@ -74,6 +77,7 @@ class User extends Controller
      */
     public function add_role()
     {
+        $this->assign('left_menu', 'role_list');
         return $this->fetch();
     }
 
@@ -102,6 +106,7 @@ class User extends Controller
     {
         $role = RoleModel::get($id);
         $this->assign('role', $role);
+        $this->assign('left_menu', 'role_list');
         return $this->fetch();
     }
 
@@ -142,6 +147,7 @@ class User extends Controller
      */
     public function add_user()
     {
+        $this->assign('left_menu', 'user_list');
         return $this->fetch();
     }
 
@@ -194,6 +200,7 @@ class User extends Controller
     {
         $user = UserModel::get($id);
         $this->assign('user', $user);
+        $this->assign('left_menu', 'user_list');
         return $this->fetch();
     }
 
@@ -214,92 +221,5 @@ class User extends Controller
         $this->redirect('user/user_list');
     }
 
-    // 批量新增用户数据
-    public function addList()
-    {
-        $user = new UserModel;
-        $list = [
-            ['nickname' => '张三', 'email' => 'zhangsan@qq.com', 'birthday' => '1988-01-15'],
-            ['nickname' => '李四', 'email' => 'lisi@qq.com', 'birthday' => '1990-09-19'],
-        ];
-        if($user->saveAll($list)){
-            return '用户批量新增成功';
-        } else {
-            return $user->getError();
-        }
-    }
-
-    // 读取用户数据
-    public function read($id = '')
-    {
-        $user = UserModel::get($id);
-
-        echo $user->name . '<br/>';
-        echo $user->nickname . '<br/>';
-
-        echo $user->profile->truename . '<br/>';
-        echo $user->profile->email . '<br/>';
-        //echo date('Y/m/d', $user->birthday) . '<br/>';
-        echo $user->profile->birthday . '<br/>';
-
-        echo $user->status . '<br/>';
-        echo $user->create_time . '<br/>';
-        echo $user->update_time . '<br/>';
-
-        $books = $user->books;
-        var_dump($books);
-    }
-
-    // 更新用户数据
-    public function do_update($id)
-    {
-        $user       = UserModel::get($id);
-        $user->name =   'framework';
-        if($user->save()){
-            // 更新关联数据
-            $user->profile->email = 'liu21st@gmail.com';
-            $user->profile->save();
-            return '用户[ ' . $user->name . ' ] 更新成功';
-        } else {
-            return $user->getError();
-        }
-
-        /*
-        $user->nickname =   '刘晨';
-        $user->email    =   'liu21st@gmail.com';
-        if(false !== $user->save()){
-            return '更新用户成功';
-        } else {
-            return $user->getError();
-        }*/
-
-    }
-
-    // 删除用户数据
-    public function delete($id)
-    {
-        $user = UserModel::get($id);
-        if($user->delete()){
-            // 删除关联数据
-            $user->profile->delete();
-            return '用户[ ' . $user->name . ' ]删除成功';
-        } else {
-            return $user->getError();
-        }
-        /*
-        if($user){
-            $user->delete();
-            return '删除用户成功';
-        } else {
-            return '删除的用户不存在';
-        }
-        */
-    }
-
-    // 创建用户数据页面
-    public function create()
-    {
-        return view();
-    }
 
 }

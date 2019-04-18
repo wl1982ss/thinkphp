@@ -40,17 +40,26 @@ return [
     'login'         =>  'index/login',
     'logout'        =>  'index/logout',
 
-    'monitorCenter' =>  'monitorCenter/subway_map',
     'monitorCenter/subway_map'  =>  'monitorCenter/subway_map',
     'monitorCenter/station'     =>  'monitorCenter/station',
     'monitorCenter/meter_display'   =>  'monitorCenter/meter_display',
     'monitorCenter/statistics' =>  'monitorCenter/statistics',
+    'monitorCenter/add_meter'   =>  'monitorCenter/add_meter',
+    'monitorCenter/do_add_meter'    =>  'monitorCenter/do_add_meter',
+    'monitorCenter/edit_meter/:id'  =>  'monitorCenter/edit_meter',
+    'monitorCenter/do_edit_meter/:id'   =>  'monitorCenter/do_edit_meter',
+    'monitorCenter/delete_meter/:id'    =>  'monitorCenter/delete_meter',
 
     'deviceManage/subway_camera'    =>  'deviceManage/subway_camera',
     'deviceManage/station_camera'   =>  'deviceManage/station_camera',
     'deviceManage/camera_room'      =>  'deviceManage/camera_room',
     'deviceManage/camera_control'   =>  'deviceManage/camera_control',
     'deviceManage/camera_list'      =>  'deviceManage/camera_list',
+    'deviceManage/add_camera'       =>  'deviceManage/add_camera',
+    'deviceManage/do_add_camera'    =>  'deviceManage/do_add_camera',
+    'deviceManage/edit_camera/:id'      =>  'deviceManage/edit_camera',
+    'deviceManage/do_edit_camera/:id'   =>  'deviceManage/do_edit_camera',
+    'deviceManage/delete_camera/:id'    =>  'deviceManage/delete_camera',
     'deviceManage/meter_set'        =>  'deviceManage/meter_set',
 
     'subwayManage/company_list'     =>  'subwayManage/company_list',
@@ -65,4 +74,5 @@ return [
     'subwayManage/do_add_line'      =>  'subwayManage/do_add_line',
     'subwayManage/edit_line/:id'        =>  'subwayManage/edit_line',
     'subwayManage/do_edit_line/:id'     =>  'subwayManage/do_edit_line',
+    'subwayManage/delete_line/:id'      =>  'subwayManage/delete_line',
 ];
