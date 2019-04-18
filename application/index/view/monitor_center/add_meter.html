@@ -83,6 +83,40 @@
                 closeTailor();
             }
         });
+
+        // 获取图片上的坐标
+        $(".previewImg").on('click', function(e){
+
+            var choose_type = $("#choose_position").val();
+
+            var div_top_x = $(".previewImg").offset().left;
+            var div_top_y = $(".previewImg").offset().top;
+            console.log(div_top_x);
+            console.log(div_top_y);
+            var position_x = parseFloat(e.pageX - div_top_x).toFixed(2);
+            var position_y = parseFloat(e.pageY - div_top_y).toFixed(2);
+            console.log(choose_type);
+
+            switch (parseInt(choose_type)) {
+                case 1:
+                    // 原点坐标
+                    $("#origin_x").html(position_x);
+                    $("#origin_y").html(position_y);
+                    break;
+                case 2:
+                    // 最大值点坐标
+                    $("#max_position_x").html(position_x);
+                    $("#max_position_y").html(position_y);
+                    break;
+                case 3:
+                    // 最小值点坐标
+                    $("#min_position_x").html(position_x);
+                    $("#min_position_y").html(position_y);
+                    break;
+                default:
+                    break;
+            }
+        });
     })
 
     //图像上传
@@ -162,6 +196,25 @@
                     <p>图片预览：</p>
                     <div class="square previewImg"></div>
                     <!--<div class="circular previewImg"></div>-->
+                    <div style="font-size:14px; margin-top:10px;">
+                        <p><select class="l-btn" name="choose_position" id="choose_position" value="">
+                            <option value="1">选择原点坐标</option>
+                            <option value="2">选择最大值点坐标</option>
+                            <option value="3">选择最小值点坐标</option>
+                        </select></p>
+                        <div><label>原点坐标</label><br/>
+                            <div><label>X:</label><label id="origin_x" ></label></div>
+                            <div><label>Y:</label><label id="origin_y" ></label></div>
+                        </div>
+                        <div><label>最大值坐标</label><br/>
+                            <div><label>X:</label><label id="max_position_x" ></label></div>
+                            <div><label>Y:</label><label id="max_position_y" ></label></div>
+                        </div>
+                        <div><label>最小值坐标</label><br/>
+                            <div><label>X:</label><label id="min_position_x" ></label></div>
+                            <div><label>Y:</label><label id="min_position_y" ></label></div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="tailoring-content-three">
