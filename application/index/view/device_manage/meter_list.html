@@ -1,11 +1,12 @@
+
 {include file="user/leftMenu" title="title"/}
 
 <div class="rightContent" >
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
-            <li><a href="#">设备管理</a></li>
-            <li><a href="#">摄像头列表</a></li>
+            <li><a href="#">监控中心</a></li>
+            <li><a href="#">监控统计</a></li>
         </ul>
     </div>
 
@@ -14,12 +15,9 @@
         <div class="tools">
 
             <ul class="toolbar">
-                <li class="click"><a href="../deviceManage/add_camera" ><span><img src="../static/images/t01.png" /></span>添加新摄像头</a></li>
-
+                <li class="click"><a href="__PUBLIC__/deviceManage/add_meter"><span><img src="__PUBLIC__/static/images/t01.png" /></span>添加新仪表</a></li>
             </ul>
-
-
-
+            <!---->
             <!--<label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">机房选择：</label>-->
             <!--<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">-->
                 <!--<option value="1" selected="selected" style="color:black">一号线</option>-->
@@ -40,27 +38,38 @@
             <thead>
             <tr>
                 <th><input name="" type="checkbox" value="" checked="checked"/></th>
-                <th>摄像头名称</th>
-                <th>编号</th>
+                <th>仪表名称</th>
+                <th>类型</th>
                 <th>所在机房</th>
                 <th>所属车站</th>
-                <th>IP</th>
+
+                <th>当前值</th>
+                <th>标准值</th>
+                <th>状态</th>
+                <th>识别图像</th>
                 <th>描述</th>
                 <th>操作</th>
             </tr>
             </thead>
 
             <tbody>
-            {volist name="camera_list" id="item"}
+            {volist name="meter_list" id="item"}
             <tr>
                 <td><input name="" type="checkbox" value="" />{$item.id}</td>
                 <td>{$item.name}</td>
-                <td>{$item.serial_number}</td>
+                <td>{$item.type}</td>
                 <td>{$item.subway_monitor_room_id}</td>
                 <td>{$item.station_id}</td>
-                <td>{$item.ip}</td>
+                <td>{$item.value}</td>
+                <td>{$item.min_normal} - {$item.max_normal} </td>
+                <td>{$item.status}</td>
+                <td><img src="../{$item.recg_image}" width="50px" height="50px"></td>
                 <td>{$item.description}</td>
-                <td><a href="__PUBLIC__/deviceManage/edit_camera/{$item.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/deviceManage/delete_camera/{$item.id}" class="tablelink"> 删除</a></td>
+                <td>
+
+                    <a href="__PUBLIC__/deviceManage/edit_meter/{$item.id}" class="tablelink">修改</a>
+
+                    <a href="__PUBLIC__/deviceManage/delete_meter/{$item.id}" class="tablelink"> 删除</a></td>
             </tr>
             {/volist}
 

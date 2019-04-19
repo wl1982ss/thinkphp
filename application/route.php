@@ -44,11 +44,7 @@ return [
     'monitorCenter/station'     =>  'monitorCenter/station',
     'monitorCenter/meter_display'   =>  'monitorCenter/meter_display',
     'monitorCenter/statistics' =>  'monitorCenter/statistics',
-    'monitorCenter/add_meter'   =>  'monitorCenter/add_meter',
-    'monitorCenter/do_add_meter'    =>  'monitorCenter/do_add_meter',
-    'monitorCenter/edit_meter/:id'  =>  'monitorCenter/edit_meter',
-    'monitorCenter/do_edit_meter/:id'   =>  'monitorCenter/do_edit_meter',
-    'monitorCenter/delete_meter/:id'    =>  'monitorCenter/delete_meter',
+
 
     'deviceManage/subway_camera'    =>  'deviceManage/subway_camera',
     'deviceManage/station_camera'   =>  'deviceManage/station_camera',
@@ -60,7 +56,12 @@ return [
     'deviceManage/edit_camera/:id'      =>  'deviceManage/edit_camera',
     'deviceManage/do_edit_camera/:id'   =>  'deviceManage/do_edit_camera',
     'deviceManage/delete_camera/:id'    =>  'deviceManage/delete_camera',
-    'deviceManage/meter_set'        =>  'deviceManage/meter_set',
+    'deviceManage/meter_list'       =>  'deviceManage/meter_list',
+    'deviceManage/add_meter'   =>  'deviceManage/add_meter',
+    'deviceManage/do_add_meter'    =>  'deviceManage/do_add_meter',
+    'deviceManage/edit_meter/:id'  =>  'deviceManage/edit_meter',
+    'deviceManage/do_edit_meter/:id'   =>  'deviceManage/do_edit_meter',
+    'deviceManage/delete_meter/:id'    =>  'deviceManage/delete_meter',
 
     'subwayManage/company_list'     =>  'subwayManage/company_list',
     'subwayManage/add_company'      =>  'subwayManage/add_company',
@@ -75,4 +76,10 @@ return [
     'subwayManage/edit_line/:id'        =>  'subwayManage/edit_line',
     'subwayManage/do_edit_line/:id'     =>  'subwayManage/do_edit_line',
     'subwayManage/delete_line/:id'      =>  'subwayManage/delete_line',
+    'subwayManage/station_list'     =>  'subwayManage/station_list',
+    'subwayManage/add_station'      =>  'subwayManage/add_station',
+    'subwayManage/do_add_station'   =>  'subwayManage/do_add_station',
+    'subwayManage/edit_station/:id' =>  'subwayManage/edit_station',
+    'subwayManage/do_edit_station/:id'  =>  'subwayManage/do_edit_station',
+    'subwayManage/delete_station/:id'   =>  'subwayManage/delete_station',
 ];

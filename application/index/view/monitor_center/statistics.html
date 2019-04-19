@@ -44,35 +44,34 @@
 
     <div class="rightinfo">
 
-        <div class="tools">
+        <!--<div class="tools">-->
 
-            <ul class="toolbar">
-                <li class="click"><a href="__PUBLIC__/monitorCenter/add_meter"><span><img src="../static/images/t01.png" /></span>添加新仪表</a></li>
+            <!--&lt;!&ndash;<ul class="toolbar">&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="click"><a href="__PUBLIC__/monitorCenter/add_meter"><span><img src="../static/images/t01.png" /></span>添加新仪表</a></li>&ndash;&gt;-->
 
-            </ul>
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
 
+            <!--&lt;!&ndash;<label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">机房选择：</label>&ndash;&gt;-->
+            <!--&lt;!&ndash;<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="1" selected="selected" style="color:black">一号线</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="1" style="color:black">二号线</option>&ndash;&gt;-->
 
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+            <!--&lt;!&ndash;<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="1" selected="selected" style="color:black">塘桥站</option>&ndash;&gt;-->
+                <!--&lt;!&ndash;<option value="1" style="color:black">南浦大桥</option>&ndash;&gt;-->
 
-            <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">机房选择：</label>
-            <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-                <option value="1" selected="selected" style="color:black">一号线</option>
-                <option value="1" style="color:black">二号线</option>
+            <!--&lt;!&ndash;</select>&ndash;&gt;-->
 
-            </select>
-            <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-                <option value="1" selected="selected" style="color:black">塘桥站</option>
-                <option value="1" style="color:black">南浦大桥</option>
-
-            </select>
-
-        </div>
+        <!--</div>-->
 
 
 
         <table class="tablelist" style="text-align:center">
             <thead>
             <tr>
-                <th><input name="" type="checkbox" value="" checked="checked"/></th>
+                <!--<th><input name="" type="checkbox" value="" checked="checked"/></th>-->
+                <th>序号</th>
                 <th>仪表名称</th>
                 <th>类型</th>
                 <th>所在机房</th>
@@ -81,16 +80,17 @@
                 <th>当前值</th>
                 <th>标准值</th>
                 <th>状态</th>
-                <th>识别图像</th>
+                <!--<th>识别图像</th>-->
                 <th>描述</th>
-                <th>操作</th>
+                <!--<th>操作</th>-->
             </tr>
             </thead>
 
             <tbody>
             {volist name="meter_list" id="item"}
             <tr>
-                <td><input name="" type="checkbox" value="" />{$item.id}</td>
+
+                <td>{$item.id}</td>
                 <td>{$item.name}</td>
                 <td>{$item.type}</td>
                 <td>{$item.subway_monitor_room_id}</td>
@@ -98,105 +98,29 @@
                 <td>{$item.value}</td>
                 <td>{$item.min_normal} - {$item.max_normal} </td>
                 <td>{$item.status}</td>
-                <td><img src="../{$item.recg_image}" width="50px" height="50px"></td>
                 <td>{$item.description}</td>
-                <td>
 
-                    <a href="__PUBLIC__/monitorCenter/edit_meter/{$item.id}" class="tablelink">修改</a>
-
-                    <a href="__PUBLIC__/monitorCenter/delete_meter/{$item.id}" class="tablelink"> 删除</a></td>
             </tr>
             {/volist}
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="../deviceManage/camera_control" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
-
-            <!--<tr>-->
-                <!--<td><input name="" type="checkbox" value="" /></td>-->
-                <!--<td>1234567890</td>-->
-                <!--<td>塘桥地铁站环控室一</td>-->
-                <!--<td>179.22.134.1</td>-->
-                <!--<td>事故风机软启动柜1（SRG1）电流表 、 事故风机软启动柜2（SRG2）电流表</td>-->
-                <!--<td><a href="camera_control.html" class="tablelink">修改</a>     <a href="#" class="tablelink"> 删除</a></td>-->
-            <!--</tr>-->
 
             </tbody>
         </table>
 
 
-        <div class="pagin">
-            <div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>
-            <ul class="paginList">
-                <li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>
-                <li class="paginItem"><a href="javascript:;">1</a></li>
-                <li class="paginItem current"><a href="javascript:;">2</a></li>
-                <li class="paginItem"><a href="javascript:;">3</a></li>
-                <li class="paginItem"><a href="javascript:;">4</a></li>
-                <li class="paginItem"><a href="javascript:;">5</a></li>
-                <li class="paginItem more"><a href="javascript:;">...</a></li>
-                <li class="paginItem"><a href="javascript:;">10</a></li>
-                <li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>
-            </ul>
-        </div>
+        <!--<div class="pagin">-->
+            <!--<div class="message">共<i class="blue">1256</i>条记录，当前显示第&nbsp;<i class="blue">2&nbsp;</i>页</div>-->
+            <!--<ul class="paginList">-->
+                <!--<li class="paginItem"><a href="javascript:;"><span class="pagepre"></span></a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;">1</a></li>-->
+                <!--<li class="paginItem current"><a href="javascript:;">2</a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;">3</a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;">4</a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;">5</a></li>-->
+                <!--<li class="paginItem more"><a href="javascript:;">...</a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;">10</a></li>-->
+                <!--<li class="paginItem"><a href="javascript:;"><span class="pagenxt"></span></a></li>-->
+            <!--</ul>-->
+        <!--</div>-->
 
         <div class="tip">
             <div class="tiptop"><span>提示信息</span><a></a></div>

@@ -5,19 +5,21 @@
         <span>位置：</span>
         <ul class="placeul">
             <li><a href="#">地铁线路管理</a></li>
-            <li><a href="#">地铁线路列表</a></li>
-            <li><a href="#">添加新线路</a></li>
+            <li><a href="#">车站列表</a></li>
+            <li><a href="#">添加新车站</a></li>
         </ul>
     </div>
 
     <div class="rightinfo">
 
-        <div class="formtitle"><span>线路信息</span></div>
+        <div class="formtitle"><span>车站信息</span></div>
 
-        <form action="__PUBLIC__/subwayManage/do_add_line" method="post">
+        <form action="__PUBLIC__/subwayManage/do_add_station" method="post">
         <ul class="forminfo">
-            <li><label>线路名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>所属公司</label><input name="subway_company_id" type="text" class="dfinput" /><i></i></li>
+            <li><label>车站名称</label><input name="name" type="text" class="dfinput" /></li>
+            <li><label>所属线路</label><input name="subway_line_id" type="text" class="dfinput" /><i></i></li>
+            <li><label>纬度坐标</label><input name="latitude" type="text" class="dfinput" /></li>
+            <li><label>经度坐标</label><input name="longitude" type="text" class="dfinput" /></li>
             <li><label>简介</label><input name="description" type="text" class="dfinput" /><i></i></li>
 
             <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认新增"/></li>

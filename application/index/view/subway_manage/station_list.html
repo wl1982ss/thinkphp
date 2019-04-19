@@ -5,7 +5,7 @@
         <span>位置：</span>
         <ul class="placeul">
             <li><a href="#">地铁线路管理</a></li>
-            <li><a href="subway_map.html">地铁线路列表</a></li>
+            <li><a href="subway_map.html">车站列表</a></li>
 
         </ul>
     </div>
@@ -14,8 +14,16 @@
         <div class="tools">
 
             <ul class="toolbar">
-                <li class="click"><a href="__PUBLIC__/subwayManage/add_line"><span><img src="__PUBLIC__/static/images/t01.png" /></span>添加新线路</a></li>
+                <li class="click"><a href="__PUBLIC__/subwayManage/add_station"><span><img src="__PUBLIC__/static/images/t01.png" /></span>添加新车站</a></li>
             </ul>
+
+            <!---->
+            <!--<label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路选择：</label>-->
+            <!--<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">-->
+                <!--<option value="1" selected="selected" style="color:black">一号线</option>-->
+                <!--<option value="1" style="color:black">二号线</option>-->
+
+            <!--</select>-->
 
         </div>
 
@@ -25,21 +33,25 @@
                 <thead>
                 <tr>
                     <th>序号</th>
-                    <th>线路名称</th>
-                    <th>所属公司</th>
+                    <th>车站名称</th>
+                    <th>所属线路</th>
+                    <th>纬度坐标</th>
+                    <th>经度坐标</th>
                     <th>简介</th>
                     <th>操作</th>
                 </tr>
                 </thead>
 
                 <tbody>
-                {volist name="line_list" id="item" }
+                {volist name="station_list" id="item" }
                 <tr>
                     <td>{$item.id}</td>
                     <td>{$item.name}</td>
-                    <td>{$item.subway_company_id}</td>
+                    <td>{$item.subway_line_id}</td>
+                    <td>{$item.latitude}</td>
+                    <td>{$item.longitude}</td>
                     <td>{$item.description}</td>
-                    <td><a href="__PUBLIC__/subwayManage/edit_line/{$item.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/subwayManage/delete_line/{$item.id}" class="tablelink"> 删除</a></td>
+                    <td><a href="__PUBLIC__/subwayManage/edit_station/{$item.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/subwayManage/delete_station/{$item.id}" class="tablelink"> 删除</a></td>
                 </tr>
                 {/volist}
 

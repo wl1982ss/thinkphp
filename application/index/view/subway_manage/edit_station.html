@@ -1,0 +1,33 @@
+{include file="user/leftmenu" title="title" /}
+
+<div class="rightContent">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">地铁线路管理</a></li>
+            <li><a href="#">车站列表</a></li>
+            <li><a href="#">修改车站信息</a></li>
+        </ul>
+    </div>
+
+    <div class="rightinfo">
+
+        <div class="formtitle"><span>车站信息</span></div>
+
+        <form action="__PUBLIC__/subwayManage/do_edit_station/{$station_info.id}" method="post">
+        <ul class="forminfo">
+            <li><label>车站名称</label><input name="name" type="text" class="dfinput" value="{$station_info.name}"/></li>
+            <li><label>所属线路</label><input name="subway_line_id" type="text" class="dfinput" value="{$station_info.subway_line_id}"/><i></i></li>
+            <li><label>纬度坐标</label><input name="latitude" type="text" class="dfinput" value="{$station_info.latitude}"/></li>
+            <li><label>经度坐标</label><input name="longitude" type="text" class="dfinput" value="{$station_info.longitude}"/></li>
+            <li><label>简介</label><input name="description" type="text" class="dfinput" value="{$station_info.description}"/><i></i></li>
+
+            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认修改"/></li>
+        </ul>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        $('.tablelist tbody tr:odd').addClass('odd');
+    </script>
+</div>

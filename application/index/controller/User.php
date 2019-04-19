@@ -33,7 +33,7 @@ class User extends Controller
 
         $this->assign('list', $list);
         $this->assign('count', count($list));
-
+        $this->assign('left_menu', '');
         return $this->fetch();
     }
 

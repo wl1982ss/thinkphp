@@ -10,6 +10,8 @@ namespace app\index\controller;
 use app\index\model\SubwayCompany as SubwayCompanyModel;
 use app\index\model\SubwayLine as SubwayLineModel;
 use app\index\model\SubwayLine;
+use app\index\model\SubwayStation as SubwayStationModel;
+use app\index\model\SubwayStation;
 use think\Controller;
 
 class SubwayManage extends Controller
@@ -32,6 +34,7 @@ class SubwayManage extends Controller
     {
         $subway_company = SubwayCompanyModel::all();
         $this->assign('subway_company_list', $subway_company);
+        $this->assign('left_menu', 'company_list');
         return $this->fetch();
     }
 
@@ -42,6 +45,7 @@ class SubwayManage extends Controller
      */
     public function add_company()
     {
+        $this->assign('left_menu', 'company_list');
         return $this->fetch();
     }
 
@@ -68,6 +72,7 @@ class SubwayManage extends Controller
     {
         $company = SubwayCompanyModel::get($id);
         $this->assign('company', $company);
+        $this->assign('left_menu', 'company_list');
         return $this->fetch();
     }
 
@@ -111,6 +116,7 @@ class SubwayManage extends Controller
 
         $line_list = SubwayLineModel::all();
         $this->assign('line_list', $line_list);
+        $this->assign('left_menu', 'line_list');
         return $this->fetch();
     }
 
@@ -121,6 +127,7 @@ class SubwayManage extends Controller
      */
     public function add_line()
     {
+        $this->assign('left_menu', 'line_list');
         return $this->fetch();
     }
 
@@ -147,6 +154,7 @@ class SubwayManage extends Controller
     {
         $line_info = SubwayLineModel::get($id);
         $this->assign('line_info', $line_info);
+        $this->assign('left_menu', 'line_list');
         return $this->fetch();
     }
 
@@ -172,6 +180,68 @@ class SubwayManage extends Controller
         {
             // 不存在该线路
             $this->redirect('subwayManage/line_list');
+        }
+    }
+
+    public function station_list()
+    {
+        $stations = SubwayStationModel::all();
+        $this->assign('station_list', $stations);
+        $this->assign('left_menu', 'station_list');
+        return $this->fetch();
+    }
+
+    public function add_station()
+    {
+        $this->assign('left_menu', 'station_list');
+        return $this->fetch();
+    }
+
+    public function do_add_station()
+    {
+        $data['name'] = $_POST['name'];
+        $data['subway_line_id'] =   $_POST['subway_line_id'];
+        $data['latitude']   =   $_POST['latitude'];
+        $data['longitude']  =   $_POST['longitude'];
+        $data['description']    =   $_POST['description'];
+
+        SubwayStationModel::create($data);
+        $this->redirect('subwayManage/station_list');
+    }
+
+    public function edit_station($id)
+    {
+        $station_info = SubwayStationModel::get($id);
+
+        $this->assign('station_info', $station_info);
+        $this->assign('left_menu', 'station_list');
+        return $this->fetch();
+    }
+
+    public function do_edit_station($id)
+    {
+        $data['name'] = $_POST['name'];
+        $data['subway_line_id'] =   $_POST['subway_line_id'];
+        $data['latitude']   =   $_POST['latitude'];
+        $data['longitude']  =   $_POST['longitude'];
+        $data['description']    =   $_POST['description'];
+
+        SubwayStationModel::update($data, array('id' => $id));
+        $this->redirect('subwayManage/station_list');
+    }
+
+    public function delete_station($id)
+    {
+        $station_info = SubwayStationModel::get($id);
+
+        if($station_info)
+        {
+            $station_info->delete();
+            $this->redirect('subwayManage/station_list');
+        }
+        else
+        {
+            $this->redirect('subwayManage/station_list');
         }
     }
 }

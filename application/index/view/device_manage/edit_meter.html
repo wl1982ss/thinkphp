@@ -3,8 +3,7 @@
 <script src="__PUBLIC__/static/js/jquery-1.8.0.min.js"></script>
 <script src="__PUBLIC__/static/js/cropper.min.js"></script>
 <script type="text/javascript">
-
-    $(function(){
+    $(function() {
 
         //弹出框水平垂直居中
         (window.onresize = function () {
@@ -116,7 +115,7 @@
                 default:
                     break;
             }
-        });
+        })
     })
 
     //图像上传
@@ -144,88 +143,91 @@
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
-            <li><a href="#">监控中心</a></li>
-            <li><a href="#">监控统计</a></li>
-            <li><a href="#">添加新仪表</a></li>
+            <li><a href="#">设备管理</a></li>
+            <li><a href="#">仪表列表</a></li>
+            <li><a href="#">修改仪表信息</a></li>
         </ul>
     </div>
 
     <div class="rightinfo">
+        <div>
+            <div class="formtitle"><span>仪表信息</span></div>
 
-        <div class="formtitle"><span>仪表信息</span></div>
+            <form action="__PUBLIC__/deviceManage/do_edit_meter/{$meter_info.id}" method="post">
+            <ul class="forminfo">
+                <li><label>仪表名称</label><input name="name" type="text" class="dfinput" value="{$meter_info.name}"/><i></i></li>
+                <li><label>类型</label><input name="type" type="text" class="dfinput" value="{$meter_info.type}"/><i></i></li>
 
-        <form action="__PUBLIC__/monitorCenter/do_add_meter" method="post">
-        <ul class="forminfo">
-            <li><label>仪表名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>类型</label><input name="type" type="text" class="dfinput" /><i></i></li>
+                <li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" value="{$meter_info.subway_monitor_room_id}"/><i></i></li>
+                <li><label>所属车站</label><input name="station_id" type="text" class="dfinput" value="{$meter_info.station_id}"/><i></i></li>
 
-            <li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" /><i></i></li>
-            <li><label>所属车站</label><input name="station_id" type="text" class="dfinput" /><i></i></li>
-            <li><label>识别图像设定</label>
-                <input type="button" id="replaceImg" class="l-btn" value="更换图片" style="margin-left:10px;">
-                <div style="float:left; width: 100px;height: 100px;border: solid 1px #555;padding: 5px; margin-bottom:10px;">
-                    <img id="finalImg" src="" width="100%">
+                <li><label>识别设定</label>
+                    <input type="button" id="replaceImg" class="l-btn" value="更换图片" style="margin-left:10px;">
+                    <div style="float:left; width: 100px;height: 100px;border: solid 1px #555;padding: 5px; margin-bottom:10px;">
+                        <img id="finalImg" src="__PUBLIC__/{$meter_info.recg_image}" width="100%">
+                    </div>
+                    <input type="hidden" id="recg_image" name="recg_image" value="{$meter_info.recg_image}"  >
+                </li>
+                <li><label>最大标准值</label><input name="max_normal" type="text" class="dfinput" value="{$meter_info.max_normal}"/><i></i></li>
+                <li><label>最小标准值</label><input name="min_normal" type="text" class="dfinput" value="{$meter_info.min_normal}"/><i></i></li>
+                <li><label>描述</label><input name="description" type="text" class="dfinput" value="{$meter_info.description}"/><i></i></li>
+
+                <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认修改"/></li>
+            </ul>
+            </form>
+        </div>
+
+        <!--图片裁剪框 start-->
+        <div style="display: none" class="tailoring-container">
+            <div class="black-cloth" onclick="closeTailor(this)"></div>
+            <div class="tailoring-content">
+                <div class="tailoring-content-one">
+                    <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
+                        <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
+                        选择图片
+                    </label>
+                    <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
                 </div>
-                <input type="hidden" id="recg_image" name="recg_image" value=""  >
-            </li>
-            <li><label>最大标准值</label><input name="max_normal" type="text" class="dfinput" /><i></i></li>
-            <li><label>最小标准值</label><input name="min_normal" type="text" class="dfinput" /><i></i></li>
-            <li><label>描述</label><input name="description" type="text" class="dfinput" /><i></i></li>
-
-            <li><label>&nbsp;</label><input name="" type="submit" class="btn" value="确认新增"/></li>
-        </ul>
-        </form>
-    </div>
-
-    <!--图片裁剪框 start-->
-    <div style="display: none" class="tailoring-container">
-        <div class="black-cloth" onclick="closeTailor(this)"></div>
-        <div class="tailoring-content">
-            <div class="tailoring-content-one">
-                <label title="上传图片" for="chooseImg" class="l-btn choose-btn">
-                    <input type="file" accept="image/jpg,image/jpeg,image/png" name="file" id="chooseImg" class="hidden" onchange="selectImg(this)">
-                    选择图片
-                </label>
-                <div class="close-tailoring"  onclick="closeTailor(this)">×</div>
-            </div>
-            <div class="tailoring-content-two">
-                <div class="tailoring-box-parcel">
-                    <img id="tailoringImg">
-                </div>
-                <div class="preview-box-parcel">
-                    <p>图片预览：</p>
-                    <div class="square previewImg"></div>
-                    <!--<div class="circular previewImg"></div>-->
-                    <div style="font-size:14px; margin-top:10px;">
-                        <p><select class="l-btn" name="choose_position" id="choose_position" value="">
-                            <option value="1">选择原点坐标</option>
-                            <option value="2">选择最大值点坐标</option>
-                            <option value="3">选择最小值点坐标</option>
-                        </select></p>
-                        <div><label>原点坐标</label><br/>
-                            <div><label>X:</label><label id="origin_x" ></label></div>
-                            <div><label>Y:</label><label id="origin_y" ></label></div>
-                        </div>
-                        <div><label>最大值坐标</label><br/>
-                            <div><label>X:</label><label id="max_position_x" ></label></div>
-                            <div><label>Y:</label><label id="max_position_y" ></label></div>
-                        </div>
-                        <div><label>最小值坐标</label><br/>
-                            <div><label>X:</label><label id="min_position_x" ></label></div>
-                            <div><label>Y:</label><label id="min_position_y" ></label></div>
+                <div class="tailoring-content-two">
+                    <div class="tailoring-box-parcel">
+                        <img id="tailoringImg">
+                    </div>
+                    <div class="preview-box-parcel">
+                        <p>图片预览：</p>
+                        <div class="square previewImg"></div>
+                        <!--<div class="circular previewImg"></div>-->
+                        <div style="font-size:14px; margin-top:10px;">
+                            <p><select class="l-btn" name="choose_position" id="choose_position" value="">
+                                <option value="1">选择原点坐标</option>
+                                <option value="2">选择最大值点坐标</option>
+                                <option value="3">选择最小值点坐标</option>
+                            </select></p>
+                            <div><label>原点坐标</label><br/>
+                                <div><label>X:</label><label id="origin_x" ></label></div>
+                                <div><label>Y:</label><label id="origin_y" ></label></div>
+                            </div>
+                            <div><label>最大值坐标</label><br/>
+                                <div><label>X:</label><label id="max_position_x" ></label></div>
+                                <div><label>Y:</label><label id="max_position_y" ></label></div>
+                            </div>
+                            <div><label>最小值坐标</label><br/>
+                                <div><label>X:</label><label id="min_position_x" ></label></div>
+                                <div><label>Y:</label><label id="min_position_y" ></label></div>
+                            </div>
                         </div>
                     </div>
+
+                </div>
+                <div class="tailoring-content-three">
+                    <button class="l-btn cropper-reset-btn">复位</button>
+                    <button class="l-btn cropper-rotate-btn">旋转</button>
+                    <!--<button class="l-btn cropper-scaleX-btn">换向</button>-->
+                    <button class="l-btn sureCut" id="sureCut">确定</button>
                 </div>
             </div>
-            <div class="tailoring-content-three">
-                <button class="l-btn cropper-reset-btn">复位</button>
-                <button class="l-btn cropper-rotate-btn">旋转</button>
-                <!--<button class="l-btn cropper-scaleX-btn">换向</button>-->
-                <button class="l-btn sureCut" id="sureCut">确定</button>
-            </div>
         </div>
+        <!--图片裁剪框 end-->
     </div>
-    <!--图片裁剪框 end-->
 
     <script type="text/javascript">
         $('.tablelist tbody tr:odd').addClass('odd');
