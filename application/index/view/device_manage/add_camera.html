@@ -16,10 +16,16 @@
 
         <form action="__PUBLIC__/deviceManage/do_add_camera" method="post">
         <ul class="forminfo">
-            <li><label>摄像头名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
-            <li><label>编号</label><input name="serial_number" type="text" class="dfinput" /><i></i></li>
-            <li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" /><i></i></li>
-            <li><label>所属车站</label><input name="station_id" type="text" class="dfinput" /><i></i></li>
+            <li><label>摄像头名称</label><input name="name" type="text" class="dfinput" /></li>
+            <li><label>编号</label><input name="serial_number" type="text" class="dfinput" /></li>
+
+            <li><label>所属车站</label>
+                <select name="subway_station_id" class="dfinput" value="">
+                    <?php foreach($station_list as $item){ ?>
+                    <option value="{$item.id}" >{$item.name}</option>
+                    <?php } ?>
+                </select>
+            </li>
             <li><label>IP</label><input name="ip" type="text" class="dfinput" /><i></i></li>
             <li><label>简介</label><input name="description" type="text" class="dfinput" /><i></i></li>
 

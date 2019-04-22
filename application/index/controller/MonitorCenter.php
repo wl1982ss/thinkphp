@@ -8,6 +8,9 @@
 namespace app\index\controller;
 
 use app\index\model\MonitorMeters as MonitorMetersModel;
+use app\index\model\SubwayLine as SubwayLineModel;
+use app\index\model\SubwayStation as SubwayStationModel;
+use app\index\model\SubwayStation;
 use think\Controller;
 
 class MonitorCenter extends Controller
@@ -19,6 +22,15 @@ class MonitorCenter extends Controller
         $this->view->replace([
             '__PUBLIC__'    =>  '/thinkphp/public',
         ]);
+
+        $user_id = session('uid');
+
+        if(empty($user_id))
+        {
+            $this->view->engine->layout(false);
+
+            $this->error("请登录", '../index');
+        }
     }
 
     /**
@@ -28,6 +40,12 @@ class MonitorCenter extends Controller
      */
     public function subway_map()
     {
+        $stations = SubwayStationModel::all();
+
+        $line_list = SubwayLineModel::alL();
+
+        $this->assign('station_list', $stations);
+        $this->assign('line_list', $line_list);
         $this->assign('left_menu', 'subway_map');
         return $this->fetch();
     }
@@ -63,6 +81,21 @@ class MonitorCenter extends Controller
 
         $this->assign('meter_list', $meters);
         $this->assign('left_menu', 'statistics');
+        return $this->fetch();
+    }
+
+    public function statistics_station($id)
+    {
+        $station_info = SubwayStationModel::get($id);
+
+        $line_list = SubwayLineModel::all();
+
+        $station_list = SubwayStationModel::all();
+
+        $this->assign('station_info', $station_info);
+        $this->assign('line_list', $line_list);
+        $this->assign('station_list', $station_list);
+        $this->assign('left_menu', 'subway_map');
         return $this->fetch();
     }
 

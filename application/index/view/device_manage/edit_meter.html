@@ -158,8 +158,13 @@
                 <li><label>仪表名称</label><input name="name" type="text" class="dfinput" value="{$meter_info.name}"/><i></i></li>
                 <li><label>类型</label><input name="type" type="text" class="dfinput" value="{$meter_info.type}"/><i></i></li>
 
-                <li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" value="{$meter_info.subway_monitor_room_id}"/><i></i></li>
-                <li><label>所属车站</label><input name="station_id" type="text" class="dfinput" value="{$meter_info.station_id}"/><i></i></li>
+                <!--<li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" value="{$meter_info.subway_monitor_room_id}"/><i></i></li>-->
+                <li><label>所属车站</label>
+                    <select name="subway_station_id" class="dfinput" value="{$meter_info.subway_station_id}">
+                        <?php foreach($station_list as $item){ ?>
+                            <option value="{$item.id}" <?php if($item['id'] == $meter_info['subway_station_id']) echo "selected";?>>{$item.name}</option>
+                        <?php } ?>
+                    </select>
 
                 <li><label>识别设定</label>
                     <input type="button" id="replaceImg" class="l-btn" value="更换图片" style="margin-left:10px;">

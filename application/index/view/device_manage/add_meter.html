@@ -159,8 +159,13 @@
             <li><label>仪表名称</label><input name="name" type="text" class="dfinput" /><i></i></li>
             <li><label>类型</label><input name="type" type="text" class="dfinput" /><i></i></li>
 
-            <li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" /><i></i></li>
-            <li><label>所属车站</label><input name="station_id" type="text" class="dfinput" /><i></i></li>
+            <!--<li><label>所在机房</label><input name="subway_monitor_room_id" type="text" class="dfinput" /><i></i></li>-->
+            <li><label>所属车站</label>
+                <select name="subway_station_id" class="dfinput" value="">
+                    <?php foreach($station_list as $item){ ?>
+                    <option value="{$item.id}">{$item.name}</option>
+                    <?php } ?>
+                </select></li>
             <li><label>识别图像设定</label>
                 <input type="button" id="replaceImg" class="l-btn" value="更换图片" style="margin-left:10px;">
                 <div style="float:left; width: 100px;height: 100px;border: solid 1px #555;padding: 5px; margin-bottom:10px;">

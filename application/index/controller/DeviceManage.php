@@ -9,6 +9,7 @@ namespace app\index\controller;
 
 use app\index\model\SubwayCamera as SubwayCameraModel;
 use app\index\model\MonitorMeters as MonitorMetersModel;
+use app\index\model\SubwayStation as SubwayStationModel;
 use think\Controller;
 
 class DeviceManage extends Controller
@@ -20,6 +21,15 @@ class DeviceManage extends Controller
         $this->view->replace([
             '__PUBLIC__'    =>  '/thinkphp/public',
         ]);
+
+        $user_id = session('uid');
+
+        if(empty($user_id))
+        {
+            $this->view->engine->layout(false);
+
+            $this->error("请登录", '../index');
+        }
     }
 
     /**
@@ -41,6 +51,10 @@ class DeviceManage extends Controller
      */
     public function station_camera()
     {
+        $camera_list = SubwayCameraModel::all();
+
+        $this->assign('camera_list', $camera_list);
+        $this->assign('left_menu', 'subway_camera');
         return $this->fetch();
     }
 
@@ -89,6 +103,9 @@ class DeviceManage extends Controller
      */
     public function add_camera()
     {
+        $station_list = SubwayStationModel::all();
+
+        $this->assign('station_list', $station_list);
         $this->assign('left_menu', 'camera_list');
         return $this->fetch();
     }
@@ -100,8 +117,8 @@ class DeviceManage extends Controller
     {
         $data['name'] = $_POST['name'];
         $data['serial_number']  =   $_POST['serial_number'];
-        $data['station_id']     =   $_POST['station_id'];
-        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
+        $data['subway_station_id']     =   $_POST['subway_station_id'];
+
         $data['ip'] =   $_POST['ip'];
         $data['description']    =   $_POST['description'];
 
@@ -119,6 +136,9 @@ class DeviceManage extends Controller
     public function edit_camera($id)
     {
         $camera_info = SubwayCameraModel::get($id);
+        $station_list = SubwayStationModel::all();
+
+        $this->assign('station_list', $station_list);
         $this->assign('camera_info', $camera_info);
         $this->assign('left_menu', 'camera_list');
         return $this->fetch();
@@ -133,8 +153,8 @@ class DeviceManage extends Controller
     {
         $data['name']   =   $_POST['name'];
         $data['serial_number']  =   $_POST['serial_number'];
-        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
-        $data['station_id'] =   $_POST['station_id'];
+
+        $data['subway_station_id'] =   $_POST['subway_station_id'];
         $data['ip'] =   $_POST['ip'];
         $data['description']    =   $_POST['description'];
 
@@ -183,6 +203,9 @@ class DeviceManage extends Controller
      */
     public function add_meter()
     {
+        $station_list = SubwayStationModel::all();
+
+        $this->assign('station_list', $station_list);
         $this->assign('left_menu', 'meter_list');
         return $this->fetch();
     }
@@ -194,8 +217,8 @@ class DeviceManage extends Controller
     {
         $data['name']   =   $_POST['name'];
         $data['type']   =   $_POST['type'];
-        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
-        $data['station_id'] =   $_POST['station_id'];
+//        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
+        $data['subway_station_id'] =   $_POST['subway_station_id'];
         $data['max_normal'] =   $_POST['max_normal'];
         $data['min_normal'] =   $_POST['min_normal'];
         $data['description']    =   $_POST['description'];
@@ -228,6 +251,10 @@ class DeviceManage extends Controller
     public function edit_meter($id)
     {
         $meter_info = MonitorMetersModel::get($id);
+
+        $station_list = SubwayStationModel::all();
+
+        $this->assign('station_list', $station_list);
         $this->assign('meter_info', $meter_info);
         $this->assign('left_menu', 'meter_list');
         return $this->fetch();
@@ -237,8 +264,8 @@ class DeviceManage extends Controller
     {
         $data['name']   =   $_POST['name'];
         $data['type']   =   $_POST['type'];
-        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
-        $data['station_id'] =   $_POST['station_id'];
+//        $data['subway_monitor_room_id'] =   $_POST['subway_monitor_room_id'];
+        $data['subway_station_id'] =   $_POST['subway_station_id'];
         $data['max_normal'] =   $_POST['max_normal'];
         $data['min_normal'] =   $_POST['min_normal'];
 

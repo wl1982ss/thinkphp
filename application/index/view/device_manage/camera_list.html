@@ -42,8 +42,9 @@
                 <th><input name="" type="checkbox" value="" checked="checked"/></th>
                 <th>摄像头名称</th>
                 <th>编号</th>
-                <th>所在机房</th>
+
                 <th>所属车站</th>
+                <th>所在线路</th>
                 <th>IP</th>
                 <th>描述</th>
                 <th>操作</th>
@@ -56,8 +57,9 @@
                 <td><input name="" type="checkbox" value="" />{$item.id}</td>
                 <td>{$item.name}</td>
                 <td>{$item.serial_number}</td>
-                <td>{$item.subway_monitor_room_id}</td>
-                <td>{$item.station_id}</td>
+
+                <td>{$item.station.name}</td>
+                <td>{$item.station.subwayLine.name}</td>
                 <td>{$item.ip}</td>
                 <td>{$item.description}</td>
                 <td><a href="__PUBLIC__/deviceManage/edit_camera/{$item.id}" class="tablelink">修改</a>     <a href="__PUBLIC__/deviceManage/delete_camera/{$item.id}" class="tablelink"> 删除</a></td>

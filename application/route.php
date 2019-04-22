@@ -44,6 +44,7 @@ return [
     'monitorCenter/station'     =>  'monitorCenter/station',
     'monitorCenter/meter_display'   =>  'monitorCenter/meter_display',
     'monitorCenter/statistics' =>  'monitorCenter/statistics',
+    'monitorCenter/statistics_station/:id'  =>  'monitorCenter/statistics_station',
 
 
     'deviceManage/subway_camera'    =>  'deviceManage/subway_camera',

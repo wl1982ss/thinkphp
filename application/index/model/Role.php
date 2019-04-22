@@ -10,9 +10,9 @@ use think\Model;
 
 class Role extends Model
 {
-    public function user()
+    public function users()
     {
         // 角色 BELONGS_TO_MANY 用户
-        return $this->belongsToMany('User', 'think_access');
+        return $this->hasMany('User');
     }
 }

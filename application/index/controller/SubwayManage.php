@@ -22,6 +22,15 @@ class SubwayManage extends Controller
         $this->view->replace([
             '__PUBLIC__'    =>  '/thinkphp/public',
         ]);
+
+        $user_id = session('uid');
+
+        if(empty($user_id))
+        {
+            $this->view->engine->layout(false);
+
+            $this->error("请登录", '../index');
+        }
     }
 
     /**
@@ -33,6 +42,7 @@ class SubwayManage extends Controller
     public function company_list()
     {
         $subway_company = SubwayCompanyModel::all();
+
         $this->assign('subway_company_list', $subway_company);
         $this->assign('left_menu', 'company_list');
         return $this->fetch();
@@ -115,6 +125,7 @@ class SubwayManage extends Controller
     {
 
         $line_list = SubwayLineModel::all();
+
         $this->assign('line_list', $line_list);
         $this->assign('left_menu', 'line_list');
         return $this->fetch();
@@ -127,6 +138,9 @@ class SubwayManage extends Controller
      */
     public function add_line()
     {
+        $company_list = SubwayCompanyModel::all();
+
+        $this->assign('company_list', $company_list);
         $this->assign('left_menu', 'line_list');
         return $this->fetch();
     }
@@ -153,7 +167,11 @@ class SubwayManage extends Controller
     public function edit_line($id)
     {
         $line_info = SubwayLineModel::get($id);
+
+        $company_list = SubwayCompanyModel::all();
+
         $this->assign('line_info', $line_info);
+        $this->assign('company_list', $company_list);
         $this->assign('left_menu', 'line_list');
         return $this->fetch();
     }
@@ -193,6 +211,9 @@ class SubwayManage extends Controller
 
     public function add_station()
     {
+        $line_list = SubwayLineModel::all();
+
+        $this->assign('line_list', $line_list);
         $this->assign('left_menu', 'station_list');
         return $this->fetch();
     }
@@ -212,8 +233,10 @@ class SubwayManage extends Controller
     public function edit_station($id)
     {
         $station_info = SubwayStationModel::get($id);
+        $line_list = SubwayLineModel::all();
 
         $this->assign('station_info', $station_info);
+        $this->assign('line_list', $line_list);
         $this->assign('left_menu', 'station_list');
         return $this->fetch();
     }

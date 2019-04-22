@@ -17,7 +17,17 @@
         <form action="__PUBLIC__/subwayManage/do_edit_station/{$station_info.id}" method="post">
         <ul class="forminfo">
             <li><label>车站名称</label><input name="name" type="text" class="dfinput" value="{$station_info.name}"/></li>
-            <li><label>所属线路</label><input name="subway_line_id" type="text" class="dfinput" value="{$station_info.subway_line_id}"/><i></i></li>
+            <li><label>所属线路</label>
+                <select name="subway_line_id" class="dfinput" value="{$station_info.id}">
+                    <?php foreach($line_list as $item)
+                        {
+                    ?>
+                    <option value="{$item.id}" <?php if($item['id'] == $station_info['subway_line_id']) echo "selected"; ?>>{$item.name}</option>
+                    <?php
+                        }
+                    ?>
+                </select>
+            </li>
             <li><label>纬度坐标</label><input name="latitude" type="text" class="dfinput" value="{$station_info.latitude}"/></li>
             <li><label>经度坐标</label><input name="longitude" type="text" class="dfinput" value="{$station_info.longitude}"/></li>
             <li><label>简介</label><input name="description" type="text" class="dfinput" value="{$station_info.description}"/><i></i></li>

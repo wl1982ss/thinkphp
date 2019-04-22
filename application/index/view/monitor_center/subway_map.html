@@ -1,4 +1,110 @@
 {include file="user/leftMenu" title="title"/}
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery-1.8.0.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/static/js/jquery.subwayMap-0.5.0.js"></script>
+<!--<script type="text/javascript">-->
+    <!--$(function(){-->
+        <!--console.log('hi');-->
+        <!--$.getJSON('__PUBLIC__/static/Shanghai_Metro_3.json', function(data){-->
+            <!--console.log('hi2');-->
+            <!--console.log(data['lines'][0]);-->
+            <!--var tmp_ul = "<ul data-color='" + data['lines'][0]['color'] + "' data-label='" + data['lines'][0]['name'] +"'>";-->
+
+            <!--for(var i = 0; i < data['lines'][0]['stations'].length; i++)-->
+            <!--{-->
+                <!--tmp_station = data['lines'][0]['stations'][i].text;-->
+                <!--tmp_x = parseInt(data['lines'][0]['stations'][i].x/10);-->
+                <!--tmp_y = parseInt(data['lines'][0]['stations'][i].y/10);-->
+                <!--console.log(tmp_station);-->
+                <!--tmp_ul +=  "<li data-coords='" + tmp_x + "," + tmp_y +"' data-marker='interchange' data-labelPos='W'>" + tmp_station + "</li>"-->
+            <!--}-->
+
+            <!--tmp_ul += "</ul>";-->
+
+            <!--$(".subway-map").append(tmp_ul);-->
+
+
+            <!--tmp_ul = "<ul data-color='" + data['lines'][1]['color'] + "' data-label='" + data['lines'][1]['name'] +"'>";-->
+
+            <!--for(var i = 0; i < data['lines'][1]['stations'].length; i++)-->
+            <!--{-->
+                <!--tmp_station = data['lines'][1]['stations'][i].text;-->
+                <!--tmp_x = parseInt(data['lines'][1]['stations'][i].x/10);-->
+                <!--tmp_y = parseInt(data['lines'][1]['stations'][i].y/10);-->
+                <!--console.log(tmp_station);-->
+                <!--tmp_ul +=  "<li data-coords='" + tmp_x + "," + tmp_y +"' data-marker='interchange' data-labelPos='W'>" + tmp_station + "</li>"-->
+            <!--}-->
+
+            <!--tmp_ul += "</ul>";-->
+
+            <!--$(".subway-map").append(tmp_ul);-->
+
+
+            <!--tmp_ul = "<ul data-color='" + data['lines'][2]['color'] + "' data-label='" + data['lines'][2]['name'] +"'>";-->
+
+            <!--for(var i = 0; i < data['lines'][2]['stations'].length; i++)-->
+            <!--{-->
+                <!--tmp_station = data['lines'][2]['stations'][i].text;-->
+                <!--tmp_x = parseInt(data['lines'][2]['stations'][i].x/10);-->
+                <!--tmp_y = parseInt(data['lines'][2]['stations'][i].y/10);-->
+                <!--console.log(tmp_station);-->
+                <!--tmp_ul +=  "<li data-coords='" + tmp_x + "," + tmp_y +"' data-marker='interchange' data-labelPos='W'>" + tmp_station + "</li>"-->
+            <!--}-->
+
+            <!--tmp_ul += "</ul>";-->
+
+            <!--$(".subway-map").append(tmp_ul);-->
+
+
+            <!--$(".subway-map").subwayMap({ debug: true });-->
+        <!--});-->
+    <!--});-->
+<!--</script>-->
+<style type="text/css">
+    body
+    {
+        font-family: Verdana;
+        font-size: 8pt;
+    }
+
+    /* The main DIV for the map */
+    .subway-map
+    {
+        margin: 0;
+        /*width: 800px;*/
+        height:2000px;
+        /*background-color: white;*/
+    }
+
+    /* Text labels */
+    .text
+    {
+        text-decoration: none;
+        color: black;
+    }
+
+    /*#legend*/
+    /*{*/
+        /*float: left;*/
+        /*width: 250px;*/
+        /*height:400px;*/
+    /*}*/
+
+    #legend div
+    {
+        height: 20px;
+    }
+
+    #legend span
+    {
+        margin: 5px 5px 5px 0;
+    }
+    .subway-map span
+    {
+        margin: 5px 5px 5px 0;
+    }
+
+</style>
+
 <div class="rightContent" style="background: #edf6fa;min-width: 980px;">
     <div class="place">
         <span>位置：</span>
@@ -11,22 +117,35 @@
     <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
 
         <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">一号线</option>
-            <option value="1" style="color:black">二号线</option>
-
-        </select>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">塘桥站</option>
-            <option value="1" style="color:black">南浦大桥</option>
-
+        <select name="line_id" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <option value="0"   >全部</option>
+            <?php foreach($line_list as $item) { ?>
+            <option value="{$item.id}" style="color:black">{$item.name}</option>
+            <?php } ?>
+            <!--<option value="1" style="color:black">二号线</option>-->
         </select>
 
     </div>
 
-    <div style="text-align:center">
+    <div id="legend"></div>
+    <div class="subway-map" data-columns="400" data-rows="400" data-cellSize="5" data-legendId="legend" data-textClass="text" data-gridNumbers="false" data-grid="false" data-lineWidth="6">
+        <ul data-color="#4d2991" data-label="4">-->
 
-        <a href="station"><img src="../static/images/shanghai_subway_map.jpg" style="width:90%;"></a>
+            {volist name="station_list" id="station"}
 
+            <li data-coords="<?php echo ($station['latitude'] * 1000 - 31100 ) ;?>, <?php echo ($station['longitude'] * 1000 - 121400); ?>" data-marker="interchange" data-labelpos="W"><a href="__PUBLIC__/monitorCenter/statistics_station/{$station.id}">{$station.name}</a></li>
+            {/volist}
+
+        </ul>
     </div>
+
+    <!--<div style="text-align:center">-->
+
+        <!--<a href="station"><img src="../static/images/shanghai_subway_map.jpg" style="width:90%;"></a>-->
+
+    <!--</div>-->
 </div>
+
+<script type="text/javascript">
+    $(".subway-map").subwayMap({ debug: true });
+</script>

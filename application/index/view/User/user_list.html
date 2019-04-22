@@ -15,7 +15,7 @@
 
             <ul class="toolbar">
                 <li class="click"><a href="__PUBLIC__/user/add_user"><span><img src="__PUBLIC__/static/images/t01.png" /></span>添加新用户</a></li>
-                <li><span><img src="__PUBLIC__/static/images/t03.png" /></span>批量删除选中用户</li>
+
             </ul>
 
         </div>
@@ -38,7 +38,7 @@
             <tr>
                 <td><input name="" type="checkbox" value="" />{$user.id}</td>
                 <td>{$user.username}</td>
-                <td>{$user.role_id}</td>
+                <td>{$user.role.role_name}</td>
                 <td>{$user.mobile}</td>
                 <td>{$user.email}</td>
                 <td>{$user.login_time}</td>

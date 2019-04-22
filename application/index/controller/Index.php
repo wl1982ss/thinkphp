@@ -41,6 +41,12 @@ class Index extends Controller
                     break;
             }
 
+            session('uid', $result->id);
+            session('useranem', $result->username);
+            session('role_id', $result->role_id);
+            session('email', $result->email);
+            session('login_time', $result->login_time);
+
             $this->view->engine->layout(false);
             $this->success('登录成功','user/index');
             //$this->redirect('user/index');
@@ -65,6 +71,9 @@ class Index extends Controller
      */
     public function logout()
     {
+        session(null);
+        session_destroy();
+
         $this->redirect('../index');
     }
 

@@ -1,101 +1,43 @@
-<script type="text/javascript">
+{include file="user/leftMenu" title="title"/}
 
-    $(function(){
-
-        var loc = parent.location.href;
-        var n1 = loc.length;//地址的总长度
-        var n2 = loc.indexOf("=");//取得=号的位置
-        var id = decodeURI(loc.substr(n2+1, n1-n2));//从=号后面的内容
-
-
-        if(id == 'admin_subway')
-        {
-            document.getElementById("subway_map").click();
-        }
-        else if(id == 'admin_tangqiao')
-        {
-            document.getElementById("tangqiao_show").click();
-        }
-
-        //导航切换
-        $(".menuson li").click(function(){
-            $(".menuson li.active").removeClass("active")
-            $(this).addClass("active");
-        });
-
-        $('.title').click(function(){
-            var $ul = $(this).next('ul');
-            $('dd').find('ul').slideUp();
-            if($ul.is(':visible')){
-                $(this).next('ul').slideUp();
-            }else{
-                $(this).next('ul').slideDown();
-            }
-        });
-    })
-</script>
-<div class="leftmenu" style="background: #96E1FF;">
-    <dd>
-        <div class="title">
-            <a href="../user/index" target="rightFrame" style="color:white"><span><img src="../static/images/home.png" /></span>首页</a>
-        </div>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/computer.png" /></span>监控中心
-        </div>
-        <ul class="menuson">
-            <li ><cite></cite><a href="../monitorCenter/subway_map" id="subway_map" >上海地铁图</a><i></i></li>
-            <li ><cite></cite><a href="../monitorCenter/statistics" id="data_show">监控统计</a><i></i></li>
-            <li style="display:none"><cite></cite><a href="station.html" id="tangqiao_show">监控统计</a><i></i></li>
-        </ul>
-    </dd>
-    <dd>
-        <div class="title">
-            <span><img src="../static/images/user_logo.png" /></span>用户管理
-        </div>
-        <ul class="menuson">
-            <li><cite></cite><a href="../user/user_list" >用户列表</a><i></i></li>
-            <li><cite></cite><a href="../user/role_list" >角色管理</a><i></i></li>
-        </ul>
-    </dd>
-    <dd><div class="title"><span><img src="../static/images/camera.png" /></span>设备管理</div>
-        <ul class="menuson">
-            <li class="active"><cite></cite><a href="../deviceManage/subway_camera" >地铁监控分布图</a><i></i></li>
-            <li><cite></cite><a href="../deviceManage/camera_list" >摄像头列表</a><i></i></li>
-        </ul>
-    </dd>
-</div>
-
-<div class="rightContent" style="background: #edf6fa;min-width: 980px;">
+<div class="rightContent" style="min-width: 980px;">
     <div class="place">
         <span>位置：</span>
         <ul class="placeul">
-            <li><a href="#">监控中心</a></li>
-            <li><a href="subway_map.html">上海地铁图</a></li>
+            <li><a href="#">设备管理</a></li>
+            <li><a href="deviceManage/subway_camera">地铁监控分布图</a></li>
             <li><a href="station.html">塘桥站</a></li>
         </ul>
     </div>
 
-    <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
+    <!--<div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">-->
 
-        <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">一号线</option>
-            <option value="1" style="color:black">二号线</option>
+        <!--<label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>-->
+        <!--<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">-->
+            <!--<option value="1" selected="selected" style="color:black">一号线</option>-->
+            <!--<option value="1" style="color:black">二号线</option>-->
 
-        </select>
-        <select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">
-            <option value="1" selected="selected" style="color:black">塘桥站</option>
-            <option value="1" style="color:black">南浦大桥</option>
+        <!--</select>-->
+        <!--<select name="host" id="host" style="width:220px;height: 36px; border-radius:4px; color:black;">-->
+            <!--<option value="1" selected="selected" style="color:black">塘桥站</option>-->
+            <!--<option value="1" style="color:black">南浦大桥</option>-->
 
-        </select>
+        <!--</select>-->
 
-    </div>
+    <!--</div>-->
 
-    <div style="text-align:center">
-        该图 各个监控室 显示 本监控室 拥有的摄像头数量
-        <a href="../deviceManage/camera_room"><img src="../static/images/tangqiao_station_camera.png" style="width:90%;"></a>
+    <div class="formbody">
 
+        <div class="formtitle"><span>环控室一</span></div>
+
+        <div class="toolsli">
+            <ul class="toollist">
+                {volist name="camera_list" id="item"}
+                <li><a href="__PUBLIC__/deviceManage/edit_camera/{$item.id}" ><img src="__PUBLIC__/static/images/camera_pic.png" /></a><h2>{$item.name}</h2><a href="__PUBLIC__/deviceManage/edit_camera/{$item.id}" style="border:0px; background:#fff;"><img src="__PUBLIC__/static/images/button_red.png" style="width:80px; height:40px;"></a></li>
+                {/volist}
+                <!--<li><a href="../deviceManage/meter_set"><img src="../static/images/camera_pic.png" /></a><h2>摄像头二</h2><img src="../static/images/button_red.png" style="width:80px; height:40px;"></li>-->
+            </ul>
+            <span class="tooladd"><a href="__PUBLIC__/deviceManage/add_camera"><img src="../static/images/add_1.png" title="添加摄像头" /></a></span>
+        </div>
     </div>
 </div>

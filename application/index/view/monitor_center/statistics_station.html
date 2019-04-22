@@ -1,0 +1,38 @@
+{include file="user/leftMenu" title="title"/}
+
+<div class="rightContent" style="background: #edf6fa;min-width: 980px;">
+    <div class="place">
+        <span>位置：</span>
+        <ul class="placeul">
+            <li><a href="#">监控中心</a></li>
+            <li><a href="__PUBLIC__/monitorCenter/subway_map">上海地铁图</a></li>
+            <li><a href="station.html">{$station_info.name}</a></li>
+            <li><a href="meter_display.html">仪表显示</a></li>
+        </ul>
+    </div>
+
+    <div class="tools" style="height:50px; margin-top:10px; margin-bottom:5px;">
+
+        <label style="text-align:left; font-weight:normal; width:100px; color: black; margin-top: 8px; margin-left:50px;" for="CacheServer">线路名称</label>
+        <select name="subway_line_id" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <?php foreach($line_list as $item) { ?>
+            <option value="{$item.id}" style="color:black">{$item.name}</option>
+            <?php } ?>
+
+        </select>
+        <select name="subway_station_id" style="width:220px;height: 36px; border-radius:4px; color:black;">
+            <?php foreach($station_list as $item) {?>
+            <option value="{$item['id']}" <?php if($item['id'] == $station_info['subway_line_id']) echo "selected"; ?> style="color:black">{$item['name']}</option>
+            <?php } ?>
+            <!--<option value="1" style="color:black">南浦大桥</option>-->
+
+        </select>
+
+    </div>
+
+    <div style="text-align:center">
+
+        <img src="__PUBLIC__/static/images/meter_display.png" style="width:90%;">
+
+    </div>
+</div>

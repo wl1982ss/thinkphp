@@ -11,5 +11,9 @@ use think\Model;
 
 class MonitorMeters extends Model
 {
-
+    // 定义关联
+    public function station()
+    {
+        return $this->belongsTo('SubwayStation');
+    }
 }
