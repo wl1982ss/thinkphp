@@ -13,16 +13,6 @@
                 $('.loginbox').css({'position':'absolute','left':($(window).width()-692)/2});
             })
 
-            /*
-            $('.loginbtn').click(function(){
-
-                var user = $('.loginuser').val();
-
-
-                window.location.href = 'login?name=' + user;
-
-            });
-            */
         });
     </script>
 
@@ -40,7 +30,7 @@
     <span class="systemlogo"></span>
 
     <div class="loginbox">
-        <form action="../public/login" method="post">
+        <form action="../public/do_login" method="post">
         <ul>
             <li><input name="name" type="text" class="loginuser" value="admin" onclick="JavaScript:this.value=''"/></li>
             <li><input name="password" type="password" class="loginpwd" value="密码" onclick="JavaScript:this.value=''"/></li>

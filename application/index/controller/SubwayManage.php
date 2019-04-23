@@ -203,7 +203,7 @@ class SubwayManage extends Controller
 
     public function station_list()
     {
-        $stations = SubwayStationModel::all();
+        $stations = SubwayStationModel::paginate();
         $this->assign('station_list', $stations);
         $this->assign('left_menu', 'station_list');
         return $this->fetch();

@@ -37,8 +37,8 @@ return [
     'user/delete/:id'   =>  'index/user/delete',
     'user/:id'          =>  'index/user/read',
 
-    'login'         =>  'index/login',
-    'logout'        =>  'index/logout',
+    'do_login'         =>  'index/do_login',
+    'do_logout'        =>  'index/do_logout',
 
     'monitorCenter/subway_map'  =>  'monitorCenter/subway_map',
     'monitorCenter/station'     =>  'monitorCenter/station',

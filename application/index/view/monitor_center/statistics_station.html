@@ -20,7 +20,7 @@
             <?php } ?>
 
         </select>
-        <select name="subway_station_id" style="width:220px;height: 36px; border-radius:4px; color:black;">
+        <select name="subway_station_id" value="{$station_info['subway_line_id']}" style="width:220px;height: 36px; border-radius:4px; color:black;">
             <?php foreach($station_list as $item) {?>
             <option value="{$item['id']}" <?php if($item['id'] == $station_info['subway_line_id']) echo "selected"; ?> style="color:black">{$item['name']}</option>
             <?php } ?>
